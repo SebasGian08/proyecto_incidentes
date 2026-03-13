@@ -1,0 +1,32 @@
+$celeste: #0087CC; //008DBD
+$azul: #00528F;
+$amarillo: #FFCA28;
+$verde: #00C853;
+$rojo: #EF5350;
+$lila: #7E57C2;
+
+/* @font-face {
+    font-family: 'flexo';
+    src: url('../../fonts/Flexo-Bold.otf') format('opentype');
+    font-weight: bold;
+}
+ */
+@font-face {
+    font-family: 'flexo';
+    src: url('../../fonts/Flexo-Bold-Italic.otf') format('opentype');
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* @font-face {
+    font-family: 'flexo';
+    src: url('../../fonts/Flexo-Heavy.otf') format('opentype');
+    font-weight: heavy;
+} */
+
+/* @font-face {
+    font-family: 'flexo';
+    src: url('../../fonts/Flexo-Regular.ttf') format('opentype');
+    font-weight: 100;
+}
+ */

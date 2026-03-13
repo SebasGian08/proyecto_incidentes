@@ -1,0 +1,128 @@
+ /* CAMBIAR THEME DE SISTEMA */
+ header {
+     background-color: #444edbff !important;
+     /* background-color: rgb(26, 26, 26) !important; */
+ }
+
+ .content-wrapper:before {
+     /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
+     background-color: #272727;
+ }
+
+ .main-nav {
+     /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);} */
+     background-color: #272727;
+ }
+
+ .active-item-here {
+     color: #272727 !important;
+ }
+
+ .table thead {
+     background-color: #ececec !important;
+     color: black;
+ }
+
+ .btn-secondary {
+     color: #fff;
+     background-color: #2ecc71;
+     border-color: #2ecc71;
+ }
+
+ .btn-secondary:hover {
+     color: #fff;
+     background-color: #1cb65c;
+     border-color: #1cb65c;
+ }
+
+ div.dataTables_wrapper div.dataTables_filter input {
+     width: 100% !important;
+ }
+
+ @media screen and (max-width:503px) {
+     div.dataTables_wrapper div.dataTables_filter input {
+         width: 100% !important;
+     }
+ }
+
+ .modal.modal-fill .modal-dialog .modal-header {
+     background-color: #445563 !important
+ }
+
+ .modal.modal-fill {
+     background: rgba(135, 189, 236, 0.305) !important;
+ }
+
+ header {
+     padding-top: 5px;
+ }
+
+ .li_notifi {
+     background: rgb(215, 215, 215);
+     cursor: pointer;
+     padding: 5px 10px !important;
+     border: 0px 0px 2px 0px solid rgb(104, 104, 104) !important;
+ }
+
+ .li_notifi:hover {
+     background: rgb(231, 229, 229) !important;
+ }
+
+ .logo img {
+     max-width: 100%;
+     /* Ajusta para no salirse del contenedor */
+     height: auto;
+     /* Mantiene la proporción */
+ }
+
+ @media (max-width: 767px) {
+     .logo img {
+         width: 90px !important;
+     }
+ }
+
+ @media (min-width: 768px) {
+     .logo img {
+         max-width: 50%;
+         /* Ajusta el tamaño para pantallas más grandes */
+     }
+ }
+
+ .logo-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .logo-animado {
+     opacity: 0;
+     transform: translateY(30px);
+     animation:
+         slideUp 1s ease-out forwards,
+         /* entrada */
+         pulse 3s ease-in-out 1s infinite;
+     /* animación infinita */
+ }
+
+ /* Efecto de entrada desde abajo */
+ @keyframes slideUp {
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ /* Efecto infinito tipo “escritura” o “latido” */
+ @keyframes pulse {
+
+     0%,
+     100% {
+         transform: scale(1) translateY(0);
+         filter: brightness(1);
+     }
+
+     50% {
+         transform: scale(1.05) translateY(-3px);
+         filter: brightness(1.2);
+     }
+ }

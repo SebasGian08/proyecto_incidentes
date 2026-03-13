@@ -1,0 +1,104 @@
+@import "../_variables";
+
+.auth-forms{
+    background-color: #f1f1f1;
+    padding: 50px 0;
+}
+
+form{
+    width: 80%;
+    padding:30px 50px;
+    margin: 0 auto;
+    background-color: #fff;
+
+    h5{
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "flexo";
+        margin-bottom: 20px;
+    }
+
+    label{
+        position: absolute;
+        top: 20px;
+        font-family: flexo;
+        color: rgba(86, 82, 82, 0.82);
+        cursor: text;
+        text-transform: uppercase;
+        transition: .25s ease;
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    input{
+        display: block;
+        border: none;
+        border-radius: 0;
+        color: #6f6b6b;
+        font-family: flexo;
+        background: #fff;
+        font-size: 16px;
+        transition: .3s ease;
+        padding: 20px 0 5px 0;
+        border-bottom: 1px solid;
+        font-weight: 300;
+
+        &:focus ~ label, &:valid ~ label{
+            top: 0;
+        }
+    }
+
+    button{
+        width: 100%;
+        text-transform: uppercase;
+        text-align: center;
+        padding:12px 20px;
+        margin:10px 0;
+        font-weight: 300;
+        font-size: 17px;
+        border: 0;
+        outline: 0;
+        transition: 0.5s ease;
+
+        &:hover{
+            opacity: 0.8;
+        }
+
+        &:focus, &:active{
+            outline: 0;
+        }
+    }
+
+    a{
+        margin-top:10px;
+        font-size: 14px;
+        text-decoration: underline;
+        text-align: center;
+        width: 100%;
+        font-family: flexo;
+        font-weight: 300;
+        display: inline-block;
+    }
+
+    &.publish{
+        h5, label, a{
+            color: $celeste;
+        }
+
+        button{
+            color: #fff;
+            background-color: $celeste;
+        }
+    }
+
+    &.assign{
+        h5, label, a{
+            color: $verde;
+        }
+
+        button{
+            color: #fff;
+            background-color: $verde;
+        }
+    }
+}

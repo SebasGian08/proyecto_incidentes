@@ -1,0 +1,717 @@
+/* @font-face {
+  font-family: 'flexo';
+  src: url("../../fonts/Flexo-Bold.otf") format("opentype");
+  font-weight: bold;
+} */
+
+@font-face {
+  font-family: 'flexo';
+  src: url("../../fonts/Flexo-Bold-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'flexo';
+  src: url("../../fonts/Flexo-Heavy.otf") format("opentype");
+  font-weight: heavy;
+}
+
+/* @font-face {
+  font-family: 'flexo';
+  src: url("../../fonts/Flexo-Regular.ttf") format("opentype");
+  font-weight: 100;
+}
+ */
+body {
+  font-family: 'Flexo';
+}
+
+/* footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; 
+  color: #fff;
+  padding: 20px;
+} */
+
+header .navbar {
+  padding: .5rem 0rem;
+}
+
+header .nav-link {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+button, a {
+  font-weight: 300 !important;
+}
+
+.modal.modal-fill {
+  background: rgb(51 51 51 / 61%);
+}
+
+.modal.modal-fill.show {
+  display: flex !important;
+  justify-content: center;
+  flex-flow: column nowrap;
+  transform: scale(1, 1);
+  transition: .4s;
+}
+
+.modal.modal-fill .modal-dialog {
+  width: 100%;
+}
+
+.modal.modal-fill .modal-dialog .modal-header {
+  padding: 15px;
+  background-color: #34495e;
+  color: #fff;
+  text-transform: uppercase;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.modal.modal-fill .modal-dialog .modal-header h5 {
+  font-size: 15px;
+}
+
+.modal.modal-fill .modal-dialog .modal-header button {
+  color: #fff;
+}
+
+.modal.modal-fill .modal-dialog .modal-footer button {
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 0;
+  background: #2ecc71;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.modal .form-group {
+  margin-bottom: 0.5rem;
+}
+
+.modal input, .modal select:not(.select2-hidden-accessible), .modal textarea {
+  display: block;
+  border: none;
+  border-radius: 0;
+  color: #6f6b6b;
+  font-family: flexo;
+  background: #f1f1f1;
+  font-size: 15px;
+  transition: .3s ease;
+  padding: 14px 15px 12px 15px;
+  font-weight: 300;
+}
+
+.modal input:focus ~ label, .modal input:valid ~ label, .modal select:not(.select2-hidden-accessible):focus ~ label, .modal select:not(.select2-hidden-accessible):valid ~ label, .modal textarea:focus ~ label, .modal textarea:valid ~ label {
+  top: 0;
+  left: 0;
+}
+
+.modal select option {
+  font-weight: 300;
+}
+
+span[data-valmsg-for] {
+  color: #de1c1c;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#main {
+  background-color: #f1f1f1;
+}
+
+#main #loading-avisos {
+  position: fixed;
+  background-color: rgba(236, 236, 236, 0.65);
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+
+#main #loading-avisos p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+#main .col-md-2 img {
+  width: 100%;
+}
+
+#main #reportrange, #main #export_reportrange {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  color: #6f6b6b;
+  font-family: flexo;
+  background: #f1f1f1;
+  font-size: 13px;
+  transition: .3s ease;
+  padding: 15px 0 10px 0;
+  font-weight: 400;
+  padding-left: 15px;
+}
+
+#main #reportrange i.fa-angle-down, #main #export_reportrange i.fa-angle-down {
+  float: right;
+  position: relative;
+  right: 5px;
+  top: 2px;
+  font-weight: bold;
+}
+
+#main .col-md-2:not(.not-padding), #main .col-md-3:not(.not-padding), #main .col-md-5:not(.not-padding)
+.col-md-6:not(.not-padding), #main .col-md-7:not(.not-padding) {
+  padding: 0;
+}
+
+#main .col-md-6:not(.not-padding), #main .col-md-5:not(.not-padding), #main .col-md-7:not(.not-padding) {
+  padding: 0 0.5rem;
+}
+
+#main .col-md-3:not(.not-padding), #main .col-md-2:not(.not-padding) {
+  padding: 0 1rem 0 0.5rem;
+}
+
+#main .col-md-3.filter-cont {
+  padding: 0 0.5rem 0 1rem;
+}
+
+#main form .col-md-6, #main .col-md-12 {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+#main .head-section {
+  padding: 20px 0;
+  background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#main .head-section .row > div:first-child.col-md-6 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+#main .head-section h3 {
+  color: #fff;
+  font-weight: 100;
+  font-family: 'flexo';
+  margin-bottom: 0;
+}
+
+#main .head-section .form {
+  width: 100%;
+  height: 47px;
+  position: relative;
+}
+
+#main .head-section .form input {
+  width: 85%;
+  height: 100%;
+  padding: 10px;
+  margin: 0;
+  color: #6f6b6b;
+  font-size: 15px;
+  font-weight: 300;
+  border: 0;
+}
+
+#main .head-section .form button {
+  width: 14%;
+  height: 100%;
+  background-color: #0087CC;
+  color: #fff;
+  font-weight: 300;
+  border: 0;
+}
+
+#main .head-section .form button:hover, #main .head-section .form button:active {
+  opacity: 0.9;
+}
+
+#main .head-section a {
+  width: auto;
+  height: auto;
+  border-radius: 10px !important;
+  background-color: #003550a6;
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+  border: 0;
+  font-weight: 300;
+}
+
+#main .head-section a:hover, #main .head-section a:active {
+  opacity: 0.9;
+}
+
+#main .filter {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+#main .filter .content-perfil {
+  padding: 20px;
+  text-align: center;
+}
+
+#main .filter .content-perfil .imagen-perfil {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  background-color: #cac9c9;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+}
+
+#main .filter .content-perfil .imagen-perfil img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+#main .filter .content-perfil .imagen-perfil input[type=file] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  top: 0;
+  height: 100%;
+}
+
+#main .filter .content-perfil h5 {
+  color: #0087CC;
+  font-size: 17px;
+  margin: 0;
+}
+
+#main .filter .content-perfil p {
+  font-weight: bold;
+  font-size: 14px;
+  color: #666;
+}
+
+#main .filter .content-perfil .hoja_de_vida {
+  margin-top: 10px;
+  position: relative;
+}
+
+#main .filter .content-perfil .hoja_de_vida p {
+  background: #00528F;
+  color: #fff;
+  padding: 10px;
+}
+
+#main .filter .content-perfil .hoja_de_vida span {
+  font-weight: 100;
+}
+
+#main .filter .content-perfil .hoja_de_vida input[type=file] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  top: 0;
+}
+
+#main .filter .content-card-user-info {
+  padding: 20px;
+}
+
+#main .filter .content-card-user-info h5 {
+  color: #0087CC;
+  margin-bottom: 20px;
+}
+
+#main .filter .content-card-user-info .row {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#main .filter .content-card-user-info .row .col-md-3 {
+  padding: 0 2px;
+}
+
+#main .filter .content-card-user-info .row .col-md-3 .progress-line {
+  height: 10px;
+  background-color: #0087CC;
+}
+
+#main .filter .content-card-user-info .row .col-md-3 .progress-line.active {
+  background-color: #00C853;
+}
+
+#main .filter .content-card-user-info .row .col-md-3 .progress-line.descarte {
+  background-color: #EF5350;
+}
+
+#main .filter a.button {
+  width: 100%;
+  height: auto;
+  background-color: #008DBD;
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+  border: 0;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+#main .filter a:hover {
+  opacity: 0.8;
+}
+
+#main .filter .info-group {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#main .filter .info-group a {
+  font-size: 20px;
+  text-decoration: underline;
+  width: 100%;
+  font-family: flexo;
+  font-weight: 300;
+  display: inline-block;
+  color: #00C853;
+}
+
+#main .filter .info-group p {
+  color: #0087CC;
+  font-size: 1rem;
+  font-family: flexo;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+#main .filter .info-group p span {
+  color: #6f6b6b;
+  font-size: 1rem;
+}
+
+#main .filter form {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#main .filter form h5 {
+  font-family: flexo;
+  color: #0087CC;
+  margin-bottom: 20px;
+}
+
+#main .filter form .form-group {
+  margin-bottom: 0.5rem;
+}
+
+#main .filter form label {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-family: flexo;
+  color: rgba(86, 82, 82, 0.82);
+  cursor: text;
+  transition: .25s ease;
+  font-size: 14px;
+}
+
+#main .filter form input, #main .filter form select {
+  display: block;
+  border: none;
+  border-radius: 0;
+  color: #6f6b6b;
+  font-family: flexo;
+  background: #f1f1f1;
+  font-size: 15px;
+  transition: .3s ease;
+  padding: 20px 0 5px 0;
+  font-weight: 300;
+  padding-left: 15px;
+}
+
+#main .filter form input:focus ~ label, #main .filter form input:valid ~ label, #main .filter form select:focus ~ label, #main .filter form select:valid ~ label {
+  top: 0;
+  left: 0;
+}
+
+#main .card {
+  padding: 20px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+#main .card small {
+  font-weight: 300 !important;
+}
+
+#main .card a {
+  font-size: 13px;
+  color: #0087CC;
+}
+
+#main .card p {
+  font-family: flexo;
+  margin: 10px 0;
+  color: #0087CC;
+  font-weight: 400 !important;
+}
+
+#main .card.aviso {
+  cursor: default;
+}
+
+#main .card.aviso h5 {
+  color: #0087CC;
+}
+
+#main .card.aviso p {
+  font-family: flexo;
+  font-size: 13px;
+  font-weight: 100;
+  color: #666;
+}
+
+#main .card.aviso button {
+  width: 60%;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px 20px;
+  margin: 10px auto;
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  transition: 0.5s ease;
+  background-color: #00C853;
+}
+
+#main .card.aviso button:hover {
+  opacity: 0.8;
+}
+
+#main .card.aviso a:not(.cke_button) {
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: underline;
+  text-align: center;
+  width: 100%;
+  font-family: flexo;
+  font-weight: 300;
+  display: inline-block;
+  color: #00C853;
+}
+
+#main .card.empresa {
+  cursor: default;
+  padding: 20px;
+  height: 100%;
+}
+
+#main .card.empresa h5 {
+  color: #0087CC;
+  font-family: flexo;
+  text-transform: uppercase;
+  font-family: 1rem;
+  font-weight: 400;
+}
+
+#main .card.empresa p {
+  color: #666;
+  margin: 10px 0 5px 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+#main .card .postulaste {
+  background-color: #c3c3c3 !important;
+}
+
+#main .formulario .form-group {
+  margin-bottom: 0.5rem;
+}
+
+#main .formulario .card {
+  padding: 25px;
+}
+
+#main .formulario .card .sub-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #8c8a8a;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: flexo;
+  font-weight: 400;
+}
+
+#main .formulario input, #main .formulario select, #main .formulario textarea {
+  display: block;
+  border: none;
+  border-radius: 0;
+  color: #6f6b6b;
+  font-family: flexo;
+  background: #f1f1f1;
+  font-size: 15px;
+  transition: .3s ease;
+  padding: 14px 15px 12px 15px;
+  font-weight: 300;
+}
+
+#main .formulario option {
+  font-weight: 300;
+  padding: 10px;
+}
+
+#main #postulantes .card {
+  padding: 15px;
+}
+
+#main #postulantes .card h5 {
+  font-size: 15px;
+  font-family: flexo;
+  font-weight: 300;
+}
+
+#main #postulantes .card .info-alumno {
+  position: absolute;
+  background: #0087CC;
+  right: 0;
+  width: 70px;
+  height: 100%;
+  top: 0;
+}
+
+#main #postulantes .card .info-alumno a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+#main #postulante_informacion p {
+  margin: 5px 0;
+}
+
+#main .titulo-adiciones {
+  color: #008DBD;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+#main .info-adiciones .info-content {
+  margin: 10px 0 0 0;
+  border-bottom: 1px solid #cecece;
+  padding-bottom: .6rem;
+}
+
+#main .info-adiciones .info-content:last-of-type {
+  border: 0;
+}
+
+#main .info-adiciones .info-content p {
+  margin: 3px 0;
+}
+
+#main .info-adiciones .info-content p.habilidad {
+  color: #0087CC;
+}
+
+#main .info-adiciones a {
+  text-align: left !important;
+  color: #0087CC !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+#main .logo_name {
+  width: 100%;
+  display: block;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-family: flexo;
+  background: #024d94;
+  font-size: 15px;
+  transition: .3s ease;
+  padding: 14px 15px 12px 15px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+#main #logo {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  cursor: pointer;
+}
+
+#main ul.btns-content {
+  padding: 0;
+}
+
+#main ul.btns-content button {
+  width: 35px !important;
+  padding: 5px !important;
+  margin: 10px 5px 0 0 !important;
+  font-size: 15px !important;
+}
+
+#main ul.btns-content button.btn-primary {
+  background-color: #008DBD;
+}
+
+#main ul.btns-content button.btn-danger {
+  background-color: #de1c1c;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,54 @@
+  .btn-wsp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #25d366;
+        border-radius: 50px;
+        color: white;
+        text-decoration: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .icon-wsp {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+    }
+
+    .btn-wsp:hover {
+        background-color: #20ba5a;
+        transform: scale(1.05);
+    }
+
+    .tooltip-wsp {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        white-space: nowrap;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+        70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    @media (max-width: 768px) {
+        .tooltip-wsp {
+            display: none;
+        }
+        .btn-wsp {
+            padding: 14px;
+            border-radius: 50%;
+        }
+        .btn-wsp img {
+            margin: 0;
+        }
+    }

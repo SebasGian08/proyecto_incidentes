@@ -1,0 +1,11 @@
+.env
+vendor/*
+config/*
+database/*
+
+
+storage/*
+public/uploads/*
+public/uploadsbk/*
+public/.well-known/*
+public/logs/*

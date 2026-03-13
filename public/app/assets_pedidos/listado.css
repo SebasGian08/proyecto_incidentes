@@ -1,0 +1,209 @@
+.btn-telegram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    /* degradado llamativo */
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.btn-telegram i {
+    font-size: 14px;
+}
+
+.btn-telegram:hover {
+    background: linear-gradient(135deg, #00d4ff, #005de6);
+    /* degradado al pasar el mouse */
+    transform: translateY(-1px);
+}
+
+.productos-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+}
+
+.producto-badge {
+    background-color: #f0f4ff;
+    color: #2a3eb1;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.producto-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cliente-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.cliente-nombre {
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.cliente-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #25D366;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cliente-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.total-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+
+.estado-pedido {
+    padding: 5px 10px;
+    border-radius: 25px;
+    background: #2d338c;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+}
+
+.estado-pedido.pendiente {
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.5);
+}
+
+.estado-pedido.confirmado {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.5);
+}
+
+.estado-pedido.validado {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.5);
+}
+
+.estado-pedido.anulado {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.5);
+}
+
+.estado-pedido.por_preparar {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    box-shadow: 0 4px 8px rgba(155, 89, 182, 0.5);
+}
+
+.estado-pedido.entregado {
+    background: linear-gradient(45deg, #16a085, #1abc9c);
+    box-shadow: 0 4px 8px rgba(22, 160, 133, 0.5);
+}
+
+/* Efecto hover */
+.estado-pedido:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos para la tabla */
+#tableProductosAjuste thead th {
+    background-color: #272727;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+#tableCompras thead th {
+    background-color: #272727;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+.btn-ver-compra {
+    border-radius: 8px;
+    padding: 6px 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-ver-compra:hover {
+    background-color: #5864ff;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Estilos para la tabla */
+#tableStock thead th {
+    background-color: #272727;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+#tableProductosDevolucion thead th {
+    background-color: #272727;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+#tableProductos thead th {
+    background-color: #272727;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}

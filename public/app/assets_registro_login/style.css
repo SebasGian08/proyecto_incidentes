@@ -1,0 +1,251 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #5864ff, #646eff, #7a7fff);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+/* ====== Contenedor ====== */
+.container-form {
+    width: 440px;
+    max-width: 95%;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+}
+
+/* ====== Títulos ====== */
+.form-information-childs h2 {
+    color: #646eff;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.sub-text {
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ====== Campos ====== */
+.form label {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.form label i {
+    margin-right: 10px;
+    color: #646eff;
+    font-size: 1.2rem;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* ====== Select estilo ====== */
+.form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* ====== Botón ====== */
+.form input[type="submit"] {
+    width: 100%;
+    background: linear-gradient(135deg, #5864ff, #646eff);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* ====== Checkbox ====== */
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.terms input {
+    margin-right: 8px;
+}
+
+.terms a {
+    color: #646eff;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* ====== Alertas ====== */
+.alerta-error,
+.alerta-exito {
+    display: none;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.alerta-error {
+    color: #e74c3c;
+}
+
+.alerta-exito {
+    color: #27ae60;
+}
+
+/* ====== Íconos sociales ====== */
+p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    color: #646eff;
+}
+
+.icons i {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icons i:hover {
+    transform: scale(1.2);
+}
+
+/* ====== RESPONSIVE ====== */
+@media screen and (max-width: 480px) {
+    .container-form {
+        padding: 1.5rem;
+    }
+
+    .form label {
+        padding: 8px;
+    }
+
+    .form input[type="submit"] {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+.return-text {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.return-link {
+
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.return-link:hover {
+    text-decoration: underline;
+    color: #3748e5;
+}
+
+.form-information-childs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* padding: 40px 20px; */
+  animation: fadeInUp 0.9s ease forwards;
+}
+
+.form-information-childs h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4a56e2;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+}
+
+.form-information-childs .sub-text {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-top: 8px;
+}
+
+.logo {
+  width: 140px;
+  transition: all 0.4s ease;
+  animation: bounceIn 1.2s ease;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 90px;
+  }
+  .form-information-childs h2 {
+    font-size: 1.5rem;
+  }
+  .form-information-childs .sub-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

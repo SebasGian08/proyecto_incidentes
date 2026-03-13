@@ -1,0 +1,93 @@
+:root {
+	--thm-font: 'Poppins', sans-serif;
+	--thm-font1: 'Abril Fatface', cursive; 
+	--thm-base: #0072bf;
+    --thm-verde: #34d399;
+    --thm-amarillo: #eab308;
+	--thm-color: #0049a9;
+	--thm-celeste : #00c3f4;
+	--thm-black: #333333;
+	--thm-heading:#31303E;
+	--thm-white: #ffffff;
+	--thm-ase: #dff2d4;
+	--thm-gray: #8e8e8e;
+	--thm-f6: #F1F8FF;
+	--thm-fb: #f6f6f6;
+	--thm-p: #686868;
+	--thm-line:linear-gradient(45deg,var(--thm-base),var(--thm-color));
+	--thm-skew:linear-gradient(-45deg,var(--thm-base) 49%,var(--thm-color) 50%);
+	/* preloader used */
+	--hue: 223;
+    --bg: hsl(var(--hue), 10%, 90%);
+    --fg: hsl(var(--hue), 10%, 10%);
+    --primary: hsl(var(--hue), 90%, 55%);
+    --primary-l: hsl(var(--hue), 90%, 65%);
+    --primary-d: hsl(var(--hue), 90%, 45%);
+    --white: hsl(var(--hue), 10%, 100%);
+    --white-d: hsl(var(--hue), 10%, 45%);
+}
+.btn_dropdown{
+    color: #0049a9 !important;
+    width: 100% !important;
+    background: #00c3f4 !important;
+}
+.form-control-m{
+    width: 100% !important;
+    border: 1px solid #f1f1f1 !important;
+    /* padding: 10px !important; */
+    border-radius: 4px !important;
+    outline: none !important;
+}
+.label-primary{
+    color: var(--thm-base) !important;
+    font-weight: 600;
+}
+.form-control-m:focus{
+    width: 100%;
+    border: 1px solid var(--thm-base) !important;
+}
+.btn-m{
+    width: 100% !important;
+}
+.btn-primary-m{
+    text-align: center;
+    font-weight: 600;
+    background: var(--thm-base);
+    color: #f1f1f1;
+    padding: 5.5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.btn-primary-m:hover{
+    color: #fff;;
+    border-radius: 0px;
+}
+.btn-success-m{
+    text-align: center;
+    font-weight: 600;
+    background: var(--thm-verde);
+    color: #f1f1f1;
+    padding: 5.5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.btn-success-m:hover{
+    color: #fff;;
+    border-radius: 0px;
+}
+.btn-warning-m{
+    text-align: center;
+    font-weight: 600;
+    background: var(--thm-amarillo);
+    color: #f1f1f1;
+    padding: 5.5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.btn-warning-m:hover{
+    color: #fff;;
+    border-radius: 0px;
+}
+.dt-buttons{
+    display: none;
+}
