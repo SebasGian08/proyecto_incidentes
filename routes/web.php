@@ -52,9 +52,15 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
 
 });
 
+
+Route::prefix('incidentes')->group(function(){
+    Route::get('/registro', 'App\IncidenteController@index')->name('app.registro.index');
+    Route::post('/store', 'App\IncidenteController@store')->name('incidentes.store');
+});
+
 //Pagina principal
 Route::post('/home/store', 'App\HomeController@store')->name('home.store');
-Route::get('/registro', 'App\RegistroController@index')->name('app.registro.index');
+//Route::get('/registro', 'App\RegistroController@index')->name('app.registro.index');
 Route::post('/registro/store', 'App\RegistroController@store')->name('registro.store');
 
 Route::group(['prefix' => 'auth'], function () {

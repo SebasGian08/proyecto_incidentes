@@ -114,85 +114,10 @@
                         </li>
 
                         @if(in_array(Auth::user()->profile_id, [
-                        \BolsaTrabajo\App::$PERFIL_CLIENTE_ASOCIADO,
-                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
-                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR
-                        ]))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="fa fa-shopping-cart mr-2"></i> Dropshipping
-                            </a>
-                            <ul class="dropdown-menu multilevel scale-up-left">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.pedidos.listado') }}">
-                                        <i class="fa fa-list mr-2"></i> Listado de pedidos
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.pedidos') }}">
-                                        <i class="fa fa-plus-circle mr-2"></i> Generar Pedido
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.clientes') }}">
-                                        <i class="fa fa-users mr-2"></i> Gestión de Clientes
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        @endif
-
-                        @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
                         \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
                         \BolsaTrabajo\App::$PERFIL_JEFE
                         ]))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="fa fa-archive mr-2"></i> Almacén
-                            </a>
-                            <ul class="dropdown-menu multilevel scale-up-left">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.compras.listado') }}">
-                                        <i class="fa fa-list-alt mr-2"></i> Listado de Compras
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.compras') }}">
-                                        <i class="fa fa-cart-plus mr-2"></i> Generar Compra
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.pedidos.gestion') }}">
-                                        <i class="fa fa-shopping-cart mr-2"></i> Aprobación de Pedidos
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.movimientos') }}">
-                                        <i class="fa fa-exchange mr-2"></i> Ver movimientos
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.ajustes.create') }}">
-                                        <i class="fa fa-balance-scale mr-2"></i> Ajustes de Cuadre
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.devoluciones.create') }}">
-                                        <i class="fa fa-undo mr-2"></i> Devoluciones
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('auth.reportes') }}">
-                                <i class="fa fa-bar-chart mr-2"></i> Reportes
-                            </a>
-                        </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
@@ -209,30 +134,10 @@
                                         <i class="fa fa-users mr-2"></i> Gestión de Usuarios
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.marcas') }}">
-                                        <i class="fa fa-tags mr-2"></i> Gestión de Marcas
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.proveedores') }}">
-                                        <i class="fa fa-truck mr-2"></i> Gestión de Proveedores
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         @endif
 
-                        @if(in_array(Auth::user()->profile_id, [
-                        \BolsaTrabajo\App::$PERFIL_MOTORIZADO,
-                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR
-                        ]))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('auth.pedidos.motorizado') }}">
-                                <i class="fa fa-motorcycle mr-2"></i> Despacho
-                            </a>
-                        </li>
-                        @endif
 
                     </ul>
                 </div>
