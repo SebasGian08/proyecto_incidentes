@@ -2,10 +2,12 @@
 
 namespace BolsaTrabajo\Http\Controllers\App;
 
-use BolsaTrabajo\Http\Controllers\Controller;
+use BolsaTrabajo\User;
 use Illuminate\Http\Request;
+use BolsaTrabajo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use BolsaTrabajo\Models\TicketsIncidente;
+use Illuminate\Support\Facades\Hash;
+use BolsaTrabajo\TicketsIncidente;
 
 class IncidenteController extends Controller
 {
