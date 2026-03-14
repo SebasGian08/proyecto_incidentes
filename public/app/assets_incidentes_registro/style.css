@@ -1,0 +1,55 @@
+/* LAYOUT */
+.layout-incidentes {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* FORM */
+.container-form {
+    flex: 1;
+    min-width: 320px;
+}
+
+/* TABLA */
+.tabla-incidentes {
+    flex: 1;
+    min-width: 320px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* TABLE RESPONSIVE */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* BOTON */
+.btn-detalle {
+    background: #5864ff;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-detalle:hover {
+    background: #3f49d6;
+}
+
+/* RESPONSIVE */
+@media (max-width:992px) {
+
+    .layout-incidentes {
+        flex-direction: column;
+    }
+
+}
+

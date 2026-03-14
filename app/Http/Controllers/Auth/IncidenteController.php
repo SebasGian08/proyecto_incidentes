@@ -11,11 +11,6 @@ use BolsaTrabajo\TicketsIncidente;
 
 class IncidenteController extends Controller
 {
-    public function index()
-    {
-        return view('app.incidentes.create');
-    }
-
     public function store(Request $request)
     {
         $status = false;

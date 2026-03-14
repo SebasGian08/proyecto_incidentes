@@ -109,7 +109,7 @@
                         <li class="nav-item {{ Route::currentRouteName() == 'auth.inicio' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('auth.inicio') }}">
                                 <span class="active-item-here"></span>
-                                <i class="fa fa-home mr-5"></i> Inicio
+                                <i class="fa fa-home mr-5"></i>
                             </a>
                         </li>
 
@@ -121,7 +121,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <i class="fa fa-cog mr-2"></i> Mantenimiento
+                                <i class="fa fa-cog mr-2"></i>
                             </a>
                             <ul class="dropdown-menu multilevel scale-up-left">
                                 <li class="nav-item">
