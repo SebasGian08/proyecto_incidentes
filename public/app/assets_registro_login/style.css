@@ -8,6 +8,14 @@ body {
     margin: 0;
 }
 
+.login-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* horizontal */
+    align-items: center;     /* vertical */
+    background: #f4f6fb;
+}
 /* ====== Contenedor ====== */
 .container-form {
     width: 440px;
@@ -128,7 +136,7 @@ body {
 
 /* ====== Íconos sociales ====== */
 p {
-    text-align: center;
+    text-align: left;
     font-size: 0.9rem;
     color: #555;
 }

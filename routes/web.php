@@ -49,8 +49,10 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::get('/partialView/{id}','Auth\ProfilesController@partialView')->name('auth.profiles.create');
     });
 
-    Route::group(['prefix'=>'incidentes'],function(){
-        Route::post('/store', 'App\IncidenteController@store')->name('incidentes.store');
+    Route::group(['prefix'=>'incidentes'], function() {
+        Route::post('/store', 'Auth\IncidenteController@store')->name('incidentes.store');
+        Route::get('/list_all', 'Auth\IncidenteController@list_all')->name('incidentes.list_all');
+        Route::get('/list_historial/{id}', 'Auth\IncidenteController@list_historial')->name('incidentes.historial');
     });
 
 

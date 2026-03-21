@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{{ asset('app/assets_registro_login/style.css') }}">
 
 @section('content')
-<div class="container-form">
+<div class="login-wrapper">
     <div class="form-information">
         <div class="form-information-childs">
             <a class="navbar-brand" href="{{ route('index') }}">
@@ -50,20 +50,7 @@
                 </div>
 
                 <input type="submit" value="Iniciar Sesión">
-
                 <br><br>
-                @if(session('error'))
-                <div class="alerta-error" style="display:block; color:red; margin-bottom:10px;">
-                    {{ session('error') }}
-                </div>
-                @endif
-
-                <p>¿No tienes cuenta? <a href="{{ route('app.registro.index') }}">Regístrate aquí</a></p>
-                <p class="return-text">
-                    <a href="{{ route('index') }}" class="return-link">← Regresar a la página principal</a>
-                </p>
-
-
             </form>
         </div>
     </div>

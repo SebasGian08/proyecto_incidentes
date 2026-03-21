@@ -115,7 +115,7 @@ var csrfToken = '{{ csrf_token() }}';
                     <p class="wow fadeInUp" data-wow-delay=".6s">
                         Vende más, crece sin límites y accede a las mejores tarifas del mercado
                     </p>
-                    <a href="{{ route('app.registro.index') }}" class="main-btn border-btn btn-hover wow fadeInUp"
+                    <a href="" class="main-btn border-btn btn-hover wow fadeInUp"
                         data-wow-delay=".6s" style="width: 100%;">Registrate ya</a><br><br>
                     <a href="{{ route('auth.login') }}" class="main-btn border-btn btn-hover wow fadeInUp"
                         data-wow-delay=".6s" style="width: 100%;background-color: #fdd446;color: #5864ff;">Ya soy
@@ -450,7 +450,7 @@ var csrfToken = '{{ csrf_token() }}';
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-5 text-end">
-                    <a href="{{ route('app.registro.index') }}" class="main-btn border-btn btn-hover wow fadeInUp"
+                    <a href="" class="main-btn border-btn btn-hover wow fadeInUp"
                         data-wow-delay=".6s" style="color: white !important;border-color: white!important;">Registro</a>
                     <a href="{{ route('auth.login') }}" class="main-btn border-btn btn-hover wow fadeInUp"
                         data-wow-delay=".6s" style="color: white !important;border-color: white!important;">Ingresar</a>
