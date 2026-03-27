@@ -190,6 +190,15 @@
         <h3>Seguimiento del Incidente</h3>
 
         <div id="timelineHistorial" class="timeline"></div>
+
+        <div style="margin-top:15px; text-align: center;">
+            <textarea id="nuevoComentario" class="form-control"
+                placeholder="Escribe un comentario..."></textarea>
+
+            <button id="btnAgregarComentario" class="btn-filtrar mt-2">
+                Agregar Comentario
+            </button>
+        </div>
     </div>
 </div>
 @endsection
@@ -307,8 +316,11 @@ document.getElementById('formIncidente').addEventListener('submit', function(e) 
 });
 
 // ABRIR MODAL AL DAR CLICK EN VER
+let incidenteSeleccionado = null;
+
 $(document).on('click', '.btn-detalle', function() {
     let id = $(this).data('id');
+    incidenteSeleccionado = id;
 
     fetch(`/auth/incidentes/list_historial/${id}`)
         .then(res => res.json())
@@ -331,6 +343,44 @@ $(document).on('click', '.btn-detalle', function() {
             $('#timelineHistorial').html(html);
             $('#modalHistorial').fadeIn();
         });
+});
+
+$('#btnAgregarComentario').click(function() {
+
+    let comentario = $('#nuevoComentario').val();
+
+    if (!comentario.trim()) {
+        alert('Escribe un comentario');
+        return;
+    }
+
+    fetch('/auth/incidentes/agregar_comentario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('input[name="_token"]').val()
+        },
+        body: JSON.stringify({
+            incidente_id: incidenteSeleccionado,
+            comentario: comentario
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.success) {
+
+            // limpiar textarea
+            $('#nuevoComentario').val('');
+
+            // recargar historial automáticamente
+            $(`button[data-id="${incidenteSeleccionado}"]`).click();
+
+        } else {
+            alert('Error al guardar');
+        }
+
+    });
 });
 
 // CERRAR MODAL

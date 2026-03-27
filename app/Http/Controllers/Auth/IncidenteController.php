@@ -135,4 +135,48 @@ class IncidenteController extends Controller
 
         return response()->json($historial);
     }
+
+    public function agregarComentario(Request $request)
+    {
+        // Validación
+        $validator = Validator::make($request->all(), [
+            'incidente_id' => 'required|integer|exists:tickets_incidentes,id',
+            'comentario' => 'required|string|max:1000'
+        ], [
+            'comentario.required' => 'El comentario es obligatorio'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+
+            \DB::table('historial_incidentes')->insert([
+                'incidente_id' => $request->incidente_id,
+                'usuario_id' => Auth::id(),
+                'accion' => 'Comentario',
+                'comentario' => trim($request->comentario),
+                'fecha_accion' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Comentario agregado correctamente'
+            ]);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al registrar comentario',
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
 }
