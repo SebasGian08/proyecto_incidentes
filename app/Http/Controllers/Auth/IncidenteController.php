@@ -20,10 +20,11 @@ class IncidenteController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
-            'severidad' => 'required|string|exists:maestro_severidad,nombre',
-            'estado' => 'required|string|exists:maestro_estado_ticket,nombre',
+            'severidad' => 'required|integer|exists:maestro_severidad,id',
+            'estado' => 'required|integer|exists:maestro_estado_ticket,id',
             'activo_id' => 'nullable|integer|exists:activos_ti,id',
             'tecnico_asignado_id' => 'nullable|integer|exists:users,id',
+            'evidencia' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ], [
             'titulo.required' => 'El título del incidente es obligatorio',
             'severidad.required' => 'Debe seleccionar la severidad',
@@ -39,14 +40,8 @@ class IncidenteController extends Controller
             ], 422);
         }
 
-        // Obtener IDs de severidad y estado
-        $severidadId = \DB::table('maestro_severidad')
-            ->where('nombre', $request->severidad)
-            ->value('id');
-
-        $estadoId = \DB::table('maestro_estado_ticket')
-            ->where('nombre', $request->estado)
-            ->value('id');
+        $severidadId = $request->severidad;
+        $estadoId = $request->estado;
 
         // Crear incidente
         $incidente = new TicketsIncidente();
@@ -57,6 +52,19 @@ class IncidenteController extends Controller
         $incidente->activo_id = $request->activo_id;
         $incidente->tecnico_asignado_id = $request->tecnico_asignado_id;
         $incidente->usuario_reporta_id = Auth::id();
+        if ($request->hasFile('evidencia')) {
+            $file = $request->file('evidencia');
+            $fileName = uniqid('INC_') . '.' . $file->getClientOriginalExtension();
+            $filePath = 'uploads/incidentes/';
+
+            if (!file_exists(public_path($filePath))) {
+                mkdir(public_path($filePath), 0777, true);
+            }
+
+            $file->move(public_path($filePath), $fileName);
+
+            $incidente->evidencia = $filePath . $fileName;
+        }
 
         // Guardar incidente
         if ($incidente->save()) {
@@ -178,5 +186,130 @@ class IncidenteController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
+    }
+
+    public function list_all_filtros(Request $request)
+    {
+        $query = \DB::table('tickets_incidentes as t')
+            ->join('maestro_estado_ticket as e', 't.estado_id', '=', 'e.id')
+            ->join('maestro_severidad as s', 't.severidad_id', '=', 's.id')
+            ->leftJoin('activos_ti as a', 't.activo_id', '=', 'a.id')
+            ->select(
+                't.id',
+                't.titulo',
+                'e.nombre as estado',
+                's.nombre as severidad',
+                'a.nombre as activo',
+                't.created_at'
+            )
+            ->whereNull('t.deleted_at');
+
+        // filtros
+        if ($request->estado) {
+            $query->where('e.nombre', $request->estado);
+        }
+
+        if ($request->severidad) {
+            $query->where('s.id', $request->severidad);
+        }
+
+        if ($request->activo_id) {
+            $query->where('t.activo_id', $request->activo_id);
+        }
+
+        if ($request->fecha_inicio && $request->fecha_fin) {
+            $query->whereBetween('t.created_at', [
+                $request->fecha_inicio,
+                $request->fecha_fin
+            ]);
+        }
+
+        return response()->json([
+            'data' => $query->orderBy('t.id', 'desc')->get()
+        ]);
+    }
+
+     public function index(Request $request)
+    {
+        return view('auth.incidentes.index');
+    }
+
+    public function get($id)
+    {
+        $incidente = \DB::table('tickets_incidentes as t')
+            ->join('maestro_estado_ticket as e', 't.estado_id', '=', 'e.id')
+            ->join('maestro_severidad as s', 't.severidad_id', '=', 's.id')
+            ->leftJoin('activos_ti as a', 't.activo_id', '=', 'a.id')
+            ->select(
+                't.*',
+                'e.nombre as estado_nombre',
+                's.nombre as severidad_nombre',
+                'a.nombre as activo_nombre'
+            )
+            ->where('t.id', $id)
+            ->first();
+
+        return response()->json($incidente);
+    }
+
+    public function update(Request $request)
+    {
+        $incidente = TicketsIncidente::find($request->id);
+
+        $comentarios = [];
+
+        $estados = [
+            1 => 'Pendiente',
+            2 => 'En Proceso',
+            3 => 'Cerrado'
+        ];
+
+        $estadoAnterior = $incidente->estado_id;
+
+        if ($request->tecnico_id) {
+            $tecnicoAnterior = $incidente->tecnico_asignado_id;
+
+            $incidente->tecnico_asignado_id = $request->tecnico_id;
+
+            $tecnico = User::find($request->tecnico_id);
+
+            if ($tecnicoAnterior) {
+                $tecnicoOld = User::find($tecnicoAnterior);
+                $comentarios[] = 'Reasignado de ' . ($tecnicoOld->nombres ?? '-') . ' a ' . ($tecnico->nombres ?? '-');
+            } else {
+                $comentarios[] = 'Asignado a ' . ($tecnico->nombres ?? 'Técnico');
+            }
+        }
+
+        if ($request->estado_id && $request->estado_id != $estadoAnterior) {
+
+            $nuevoEstado = $estados[$request->estado_id] ?? 'Desconocido';
+            $estadoOld = $estados[$estadoAnterior] ?? 'Desconocido';
+
+            $incidente->estado_id = $request->estado_id;
+
+            $comentarios[] = "Cambio de estado de $estadoOld a $nuevoEstado";
+
+            if ($request->estado_id == 3) {
+                $incidente->fecha_cierre = now();
+            }
+        }
+
+        $incidente->save();
+
+        if (count($comentarios) > 0) {
+
+            \DB::table('historial_incidentes')->insert([
+                'incidente_id' => $incidente->id,
+                'usuario_id' => Auth::id(),
+                'accion' => 'Actualización',
+                'comentario' => implode(' | ', $comentarios),
+                'fecha_accion' => now(),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        return response()->json(['success' => true]);
     }
 }

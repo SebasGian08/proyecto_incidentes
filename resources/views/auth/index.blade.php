@@ -109,9 +109,20 @@
                         <li class="nav-item {{ Route::currentRouteName() == 'auth.inicio' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('auth.inicio') }}">
                                 <span class="active-item-here"></span>
-                                <i class="fa fa-home mr-5"></i>
+                                <i class="fa fa-home mr-5"></i> Inicio
                             </a>
                         </li>
+                        @if(in_array(Auth::user()->profile_id, [
+                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
+                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        ]))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('incidentes.index') }}">
+                                <i class="fa fa-bars mr-2"></i> Gestión de Incidencias
+                            </a>
+                        </li>
+                        @endif
 
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
@@ -121,7 +132,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <i class="fa fa-cog mr-2"></i>
+                                <i class="fa fa-cog mr-2"></i> General
                             </a>
                             <ul class="dropdown-menu multilevel scale-up-left">
                                 <li class="nav-item">
@@ -137,7 +148,6 @@
                             </ul>
                         </li>
                         @endif
-
 
                     </ul>
                 </div>

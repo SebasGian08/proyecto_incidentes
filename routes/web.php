@@ -52,8 +52,12 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
     Route::group(['prefix'=>'incidentes'], function() {
         Route::post('/store', 'Auth\IncidenteController@store')->name('incidentes.store');
         Route::get('/list_all', 'Auth\IncidenteController@list_all')->name('incidentes.list_all');
+        Route::get('/list_filtros', 'Auth\IncidenteController@list_all_filtros')->name('incidentes.list_filtros');
         Route::get('/list_historial/{id}', 'Auth\IncidenteController@list_historial')->name('incidentes.historial');
         Route::post('/agregar_comentario', 'Auth\IncidenteController@agregarComentario')->name('incidentes.agregar_comentario');
+        Route::get('/incidentes', 'Auth\IncidenteController@index')->name('incidentes.index');
+        Route::get('/get/{id}', 'Auth\IncidenteController@get')->name('incidentes.get');
+        Route::post('/update', 'Auth\IncidenteController@update')->name('incidentes.update');
     });
 
 

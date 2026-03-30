@@ -49,7 +49,7 @@
                 </div>
 
                 <form class="form form-incidente" action="{{ route('incidentes.store') }}" method="POST"
-                    id="formIncidente">
+                    id="formIncidente" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Título -->
@@ -78,7 +78,7 @@
                         <select name="severidad" required style="padding-left:35px; appearance:auto;">
                             <option value="" disabled selected>Seleccione la severidad</option>
                             @foreach(\DB::table('maestro_severidad')->get() as $sev)
-                            <option value="{{ $sev->nombre }}" {{ old('severidad') == $sev->nombre ? 'selected' : '' }}>
+                            <option value="{{ $sev->id }}" {{ old('severidad') == $sev->id ? 'selected' : '' }}>
                                 {{ $sev->nombre }}
                             </option>
                             @endforeach
@@ -119,10 +119,10 @@
                     <label>
                         <i class='bx bx-cog'></i>
                         <select disabled style="padding-left:35px; appearance:auto;">
-                            <option value="Abierto" selected>Abierto</option>
+                            <option value="1" selected>Abierto</option>
                         </select>
                         <!-- Campo oculto para enviar valor -->
-                        <input type="hidden" name="estado" value="Abierto">
+                        <input type="hidden" name="estado" value="1">
                     </label>
                     @error('estado')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
