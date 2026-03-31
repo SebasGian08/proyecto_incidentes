@@ -129,6 +129,18 @@
                         \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
                         \BolsaTrabajo\App::$PERFIL_JEFE
                         ]))
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('incidentes.gestion') }}">
+                            <i class="fa fa-bars mr-2"></i> Incidencias
+                        </a>
+                        </li>
+                        @endif
+
+                        @if(in_array(Auth::user()->profile_id, [
+                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
+                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        ]))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">

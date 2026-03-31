@@ -24,10 +24,10 @@ class HomeController extends Controller
         return response()->json(Distrito::where('provincia_id', $id)->orderBy('nombre', 'asc')->get());
     }
 
-    public function index()
+   /*  public function index()
     {
         return view('app.home.index');
-    }
+    } */
 
     
 

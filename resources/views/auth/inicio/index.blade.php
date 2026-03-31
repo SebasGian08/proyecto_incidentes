@@ -39,7 +39,7 @@
 
                 <div class="form-information-childs">
 
-                    <a class="navbar-brand" href="{{ route('index') }}">
+                    <a class="navbar-brand" href="#">
                         <img src="{{ asset('app/img/logo2.png') }}" alt="Logo" class="logo" />
                     </a>
 

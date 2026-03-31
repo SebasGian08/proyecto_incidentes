@@ -229,7 +229,7 @@ class IncidenteController extends Controller
         ]);
     }
 
-     public function index(Request $request)
+    public function index(Request $request)
     {
         return view('auth.incidentes.index');
     }
@@ -295,6 +295,27 @@ class IncidenteController extends Controller
             }
         }
 
+        // GUARDAR EVIDENCIA
+        if ($request->hasFile('evidencia')) {
+
+            $file = $request->file('evidencia');
+            $fileName = uniqid('SOL_') . '.' . $file->getClientOriginalExtension();
+            $filePath = 'uploads/incidentes/';
+
+            if (!file_exists(public_path($filePath))) {
+                mkdir(public_path($filePath), 0777, true);
+            }
+
+            $file->move(public_path($filePath), $fileName);
+
+            $incidente->evidencia = $filePath . $fileName;
+        }
+
+        // AGREGAR COMENTARIO
+        if ($request->comentario) {
+            $comentarios[] = 'Solución: ' . $request->comentario;
+        }
+
         $incidente->save();
 
         if (count($comentarios) > 0) {
@@ -311,5 +332,33 @@ class IncidenteController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function gestion(Request $request)
+    {
+        return view('auth.incidentes.gestion');
+    }
+    
+    public function misIncidentes()
+    {
+        $data = \DB::table('tickets_incidentes as t')
+            ->join('maestro_estado_ticket as e', 't.estado_id', '=', 'e.id')
+            ->join('maestro_severidad as s', 't.severidad_id', '=', 's.id')
+            ->leftJoin('activos_ti as a', 't.activo_id', '=', 'a.id')
+            ->select(
+                't.id',
+                't.titulo',
+                't.descripcion',
+                'e.nombre as estado',
+                's.nombre as severidad',
+                'a.nombre as activo',
+                't.created_at'
+            )
+            ->where('t.tecnico_asignado_id', Auth::id())
+            ->whereNull('t.deleted_at')
+            ->orderBy('t.id', 'desc')
+            ->get();
+
+        return response()->json(['data' => $data]);
     }
 }
