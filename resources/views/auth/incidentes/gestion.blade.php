@@ -6,6 +6,9 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('auth/plugins/datatable/datatables.min.css') }}">
+<link rel="stylesheet" href="{{ asset('app/assets_pedidos/style.css') }}">
+<link rel="stylesheet" href="{{ asset('app/assets_registro_login/style.css') }}">
+<link rel="stylesheet" href="{{ asset('app/assets_incidentes_registro/style.css') }}">
 @endsection
 
 @section('contenido')
@@ -18,13 +21,17 @@
         </h1>
     </section>
 
-    <section class="content mt-3">
-        <div class="card p-3">
-            <table id="tablaGestion" class="table table-bordered table-striped">
-            </table>
+    <section class="content">
+        @csrf
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-section">
+                    <table id="tablaGestion" class="table table-bordered table-striped">
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
-
 </div>
 
 <!-- MODAL GESTION -->
@@ -34,7 +41,9 @@
 
             <div class="modal-header">
                 <h5>Gestionar Incidente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span>&times;</span>
+                </button>
             </div>
 
             <div class="modal-body">
@@ -51,6 +60,10 @@
                         </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="mb-2">
+                    <label>Evidencia</label>
+                    <div id="g_evidencia_ver"></div>
                 </div>
                 <div class="mb-2">
                     <label>Comentario de solución</label>
@@ -75,175 +88,12 @@
 @endsection
 
 @section('scripts')
+<script>
+    const URL_INCIDENTES_MIS = "{{ route('incidentes.mis') }}";
+    const URL_UPDATE_INCIDENTE = "{{ route('incidentes.update') }}";
+</script>
 <script src="{{ asset('auth/plugins/datatable/datatables.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('auth/plugins/datatable/datatables.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-let tabla;
-let currentId = null;
-
-$(document).ready(function() {
-
-    tabla = $('#tablaGestion').DataTable({
-        ajax: "{{ route('incidentes.mis') }}",
-        columns: [{
-                data: 'id',
-                title: 'ID'
-            },
-            {
-                data: 'titulo',
-                title: 'Título'
-            },
-            {
-                data: 'severidad',
-                title: 'Criticidad'
-            },
-            {
-                data: 'estado',
-                title: 'Estado',
-                render: function(data) {
-                    let color = 'secondary';
-                    if (data === 'Abierto') color = 'danger';
-                    if (data === 'En proceso') color = 'warning';
-                    if (data === 'Cerrado') color = 'success';
-                    return `<span class="badge bg-${color}">${data}</span>`;
-                }
-            },
-            {
-                data: 'activo',
-                title: 'Activo'
-            },
-            {
-                data: null,
-                title: 'Acciones',
-                render: function(d) {
-
-                    if (d.estado === 'Cerrado') {
-                        return `
-                                <button class="btn btn-secondary btn-sm ver" data-id="${d.id}">
-                                    Ver
-                                </button>
-                            `;
-                    }
-
-                    return `
-                            <button class="btn btn-primary btn-sm gestionar" data-id="${d.id}">
-                                Gestionar
-                            </button>
-                        `;
-                }
-            }
-        ]
-    });
-
-});
-
-$(document).on('click', '.ver', function() {
-    let id = $(this).data('id');
-
-    fetch(`/auth/incidentes/list_historial/${id}`)
-        .then(res => res.json())
-        .then(data => {
-
-            let html = '';
-
-            data.forEach(item => {
-                html += `
-                <div>
-                    <b>${item.usuario}</b> - ${item.accion}<br>
-                    <small>${item.comentario}</small>
-                    <hr>
-                </div>
-                `;
-            });
-
-            Swal.fire({
-                title: 'Historial del Incidente',
-                html: html || 'Sin historial',
-                width: 600
-            });
-        });
-});
-/* ABRIR MODAL */
-$(document).on('click', '.gestionar', function() {
-    currentId = $(this).data('id');
-
-    $.get(`/auth/incidentes/get/${currentId}`, function(res) {
-        $('#g_titulo').text(res.titulo);
-        $('#g_descripcion').text(res.descripcion);
-        $('#g_estado').val(res.estado_id);
-    });
-
-    $('#modalGestionar').modal('show');
-});
-
-/* GUARDAR */
-$('#guardarGestion').click(function() {
-
-    let formData = new FormData();
-
-    formData.append('_token', $('input[name="_token"]').val());
-    formData.append('id', currentId);
-    formData.append('estado_id', 3);
-    formData.append('comentario', $('#g_comentario').val());
-
-    let file = $('#g_evidencia')[0].files[0];
-    if (file) {
-        formData.append('evidencia', file);
-    }
-
-    fetch("{{ route('incidentes.update') }}", {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(res => {
-
-            if (res.success) {
-
-                $('#modalGestionar').modal('hide');
-                tabla.ajax.reload();
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Incidente Cerrado',
-                    text: 'Se registró correctamente'
-                });
-
-            } else {
-                Swal.fire('Error', 'No se pudo guardar', 'error');
-            }
-
-        });
-
-});
-
-$(document).on('click', '.gestionar', function() {
-    currentId = $(this).data('id');
-
-    Swal.fire({
-        title: '¿Resolver incidente?',
-        text: '¿Deseas registrar evidencia y comentario?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, continuar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-
-            $.get(`/auth/incidentes/get/${currentId}`, function(res) {
-                $('#g_titulo').text(res.titulo);
-                $('#g_descripcion').text(res.descripcion);
-                $('#g_estado').val(3); // cerrado
-            });
-
-            $('#modalGestionar').modal('show');
-        }
-
-    });
-});
-</script>
+<script src="{{ asset('app/js/incidencias/index.js') }}"></script>
 @endsection

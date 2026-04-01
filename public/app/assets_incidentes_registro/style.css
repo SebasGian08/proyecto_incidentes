@@ -23,6 +23,23 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
+#timelineHistorial {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+}
+
+#timelineHistorial::-webkit-scrollbar {
+    width: 6px;
+}
+
+#timelineHistorial::-webkit-scrollbar-thumb {
+    background: #5864ff;
+    border-radius: 10px;
+}
+
+
 /* TABLE RESPONSIVE */
 .table-responsive {
     width: 100%;

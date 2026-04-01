@@ -242,6 +242,10 @@ class IncidenteController extends Controller
             ->leftJoin('activos_ti as a', 't.activo_id', '=', 'a.id')
             ->select(
                 't.*',
+                't.evidencia',
+                'e.nombre as estado_nombre',
+                's.nombre as severidad_nombre',
+                'a.nombre as activo_nombre',
                 'e.nombre as estado_nombre',
                 's.nombre as severidad_nombre',
                 'a.nombre as activo_nombre'
