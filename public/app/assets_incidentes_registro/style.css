@@ -35,7 +35,7 @@
 }
 
 #timelineHistorial::-webkit-scrollbar-thumb {
-    background: #5864ff;
+    background: #81C34D;
     border-radius: 10px;
 }
 
@@ -46,9 +46,38 @@
     overflow-x: auto;
 }
 
-/* BOTON */
+/* BOTONES */
+
+.btn-primary1 {
+    background: #81C34D;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-primary1:hover {
+    background: #6ca441;
+}
+
+.btn-primary2 {
+    background: #3E9BD5;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-primary2:hover {
+    background: #3585b7;
+}
+
 .btn-detalle {
-    background: #5864ff;
+    background: #81C34D;
     border: none;
     color: white;
     padding: 6px 12px;
@@ -58,7 +87,7 @@
 }
 
 .btn-detalle:hover {
-    background: #3f49d6;
+    background: #6ca441;
 }
 
 /* RESPONSIVE */
@@ -93,14 +122,14 @@
 
 /* hover bonito */
 .filtro-input:focus {
-    border-color: #5864ff;
+    border-color: #81C34D;
     box-shadow: 0 0 0 2px rgba(88,100,255,0.2);
     outline: none;
 }
 
 /* botón */
 .btn-filtrar {
-    background: #5864ff;
+    background: #81C34D;
     color: white;
     border: none;
     padding: 8px 18px;
@@ -146,7 +175,7 @@
     position: relative;
     margin-top: 20px;
     padding-left: 20px;
-    border-left: 2px solid #5864ff;
+    border-left: 2px solid #81C34D;
 }
 
 .timeline-item {
@@ -161,7 +190,7 @@
     top: 5px;
     width: 14px;
     height: 14px;
-    background: #5864ff;
+    background: #81C34D;
     border-radius: 50%;
 }
 
@@ -173,7 +202,7 @@
 
 .timeline-content strong {
     display: block;
-    color: #5864ff;
+    color: #81C34D;
 }
 
 .timeline-content small {

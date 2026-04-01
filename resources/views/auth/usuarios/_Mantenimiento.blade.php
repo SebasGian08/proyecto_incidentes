@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit"
-                        class="btn btn-bold btn-pure btn-primary">{{ $Entity != null ? 'Modificar' : ' Registrar' }}
+                        class="btn btn-bold btn-pure btn-primary2">{{ $Entity != null ? 'Modificar' : ' Registrar' }}
                         Usuario</button>
                 </div>
             </div>

@@ -41,7 +41,7 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav mt-5">
                             <li class="dropdown user user-menu"
-                                style="background: #2d338c; border-radius: 50px;height: 50px !important;">
+                                style="background: #81c34d; border-radius: 50px;height: 50px !important;">
                                 <a href="#" class="dropdown-toggle d-flex align-items-center" data-toggle="dropdown"
                                     style="padding: 10px 20px;height: 45px;text-decoration: none;">
                                     <img src="{{ asset('auth/image/icon/usuario.png') }}" alt="User Image"
@@ -112,6 +112,12 @@
                                 <i class="fa fa-home mr-5"></i> Inicio
                             </a>
                         </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'dashboard.index' ? 'active' : '' }}">
+                            <a class="nav-link" href="">
+                                <span class="active-item-here"></span>
+                                <i class="fa fa-bar-chart mr-2"></i> Dashboard
+                            </a>
+                        </li>
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
                         \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
@@ -130,9 +136,9 @@
                         \BolsaTrabajo\App::$PERFIL_JEFE
                         ]))
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('incidentes.gestion') }}">
-                            <i class="fa fa-bars mr-2"></i> Incidencias
-                        </a>
+                            <a class="nav-link" href="{{ route('incidentes.gestion') }}">
+                                <i class="fa fa-bars mr-2"></i> Incidencias
+                            </a>
                         </li>
                         @endif
 

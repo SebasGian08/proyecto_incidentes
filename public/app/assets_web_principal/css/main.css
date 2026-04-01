@@ -48,7 +48,7 @@ button:focus,
 }
 
 a:hover {
-  color: #5864FF;
+  color: #81C34D;
 }
 
 a {
@@ -237,7 +237,7 @@ p {
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   border: none;
-  background: #5864FF;
+  background: #81C34D;
   overflow: hidden;
 }
 
@@ -246,9 +246,9 @@ p {
 }
 
 .main-btn.border-btn {
-  border: 2px solid #5864FF;
+  border: 2px solid #81C34D;
   background: transparent;
-  color: #5864FF;
+  color: #81C34D;
 }
 
 .btn-hover {
@@ -281,7 +281,7 @@ p {
 .scroll-top {
   width: 45px;
   height: 45px;
-  background: #5864FF;
+  background: #81C34D;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -417,7 +417,7 @@ p {
   height: 100%;
   border-style: solid;
   /* Spinner Color */
-  border-color: #5864FF #5864FF #ddd;
+  border-color: #81C34D #81C34D #ddd;
   border-radius: 50%;
   border-width: 6px;
 }
@@ -852,8 +852,8 @@ p {
   height: 40px;
   border-radius: 50%;
   background: #fff;
-  border: 3px solid #5864FF;
-  color: #5864FF;
+  border: 3px solid #81C34D;
+  color: #81C34D;
   left: 15px;
   bottom: 0;
   z-index: 9;
@@ -935,7 +935,7 @@ p {
   height: 130px;
   border-radius: 50%;
   background: rgba(88, 100, 255, 0.1);
-  color: #5864FF;
+  color: #81C34D;
   margin: auto;
   margin-bottom: 30px;
   font-size: 65px;
@@ -1020,7 +1020,7 @@ p {
 }
 
 .box-style .content a.main-btn.border-btn:hover {
-  color: #5864FF;
+  color: #81C34D;
 }
 
 .box-style .content a.main-btn.border-btn:hover::after {
@@ -1040,15 +1040,15 @@ p {
 }
 
 .box-style.color-2 {
-  border-color: #5864FF;
+  border-color: #81C34D;
 }
 
 .box-style.color-2 .icon {
-  color: #5864FF;
+  color: #81C34D;
 }
 
 .box-style.color-2 .content a:hover {
-  color: #5864FF;
+  color: #81C34D;
 }
 
 .box-style.color-2 .content .main-btn:hover {
@@ -1211,7 +1211,7 @@ p {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #5864FF;
+  background: #81C34D;
   position: absolute;
   left: 0;
   top: 6.5px;
@@ -1245,7 +1245,7 @@ p {
   font-size: 65px;
   line-height: 1;
   margin-bottom: 30px;
-  color: #5864FF;
+  color: #81C34D;
 }
 
 .feature-extended-section .single-feature-extended .content h3 {
@@ -1348,7 +1348,7 @@ p {
     position: static;
     margin-top: 20px;
     background: #fff;
-    color: #5864FF;
+    color: #81C34D;
     padding: 17.5px 35px;
   }
 }
@@ -1358,7 +1358,7 @@ p {
     position: absolute;
     margin-top: 0px;
     color: #fff;
-    background: #5864FF;
+    background: #81C34D;
     padding: 17.5px 25px;
   }
 }
@@ -1381,7 +1381,7 @@ p {
 @media (max-width: 767px) {
   .footer {
     padding-top: 120px;
-    background: #5864FF;
+    background: #81C34D;
   }
 }
 
@@ -1427,7 +1427,7 @@ p {
 }
 
 .footer .widget-wrapper .footer-widget .socials li a:hover {
-  color: #5864FF;
+  color: #81C34D;
   background: #fff;
 }
 

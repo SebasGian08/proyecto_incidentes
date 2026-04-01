@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary2" type="submit">
                         {{ $Entity ? 'Modificar' : 'Registrar' }}
                     </button>
                 </div>

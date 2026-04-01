@@ -129,7 +129,7 @@
 }
 
 .btn-update {
-    background-color: #5864ff;
+    background-color: #81C34D;
     color: #fff;
     border: none;
 }
@@ -234,7 +234,7 @@
 
 #modalMantenimientoProductos input.form-control:focus,
 #modalMantenimientoProductos select.form-select:focus {
-    border-color: #5864ff;
+    border-color: #81C34D;
     box-shadow: 0 0 0 0.15rem rgba(88, 100, 255, 0.25);
 }
 
@@ -302,7 +302,7 @@
 
 #modalMantenimientoClientes input.form-control:focus,
 #modalMantenimientoClientes select.form-select:focus {
-    border-color: #5864ff;
+    border-color: #81C34D;
     box-shadow: 0 0 0 0.15rem rgba(88, 100, 255, 0.25);
 }
 
@@ -337,8 +337,8 @@
 }
 
 #modalMantenimientoProductos .btn-primary {
-    background-color: #5864ff;
-    border-color: #5864ff;
+    background-color: #81C34D;
+    border-color: #81C34D;
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -365,7 +365,7 @@
 
 
 .btn-gestionar {
-    background: linear-gradient(90deg, #5864ff, #00c3ff);
+    background: linear-gradient(90deg, #81C34D, #00c3ff);
     border: none;
     color: #fff;
     padding: 6px 14px;
@@ -382,7 +382,7 @@
 }
 
 .btn-gestionar:hover {
-    background: linear-gradient(90deg, #00c3ff, #5864ff);
+    background: linear-gradient(90deg, #00c3ff, #81C34D);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -399,7 +399,7 @@
 }
 
 #modalGestionPedido .modal-header {
-    /*     background: linear-gradient(90deg, #5864ff, #646eff); */
+    /*     background: linear-gradient(90deg, #81C34D, #81C34D); */
     color: #fff;
     border-bottom: none;
     padding: 1rem 1.5rem;
@@ -482,7 +482,7 @@
 }
 
 #modalGestionPedido .btn-primary {
-    background: #5864ff;
+    background: #81C34D;
     border: none;
     border-radius: 8px;
     padding: 0.6rem 1.2rem;
@@ -511,7 +511,7 @@
 }
 
 #modalSeguimientoPedido .modal-header {
-    /*     background: linear-gradient(90deg, #5864ff, #646eff); */
+    /*     background: linear-gradient(90deg, #81C34D, #81C34D); */
     color: #fff;
     border-bottom: none;
     padding: 1rem 1.5rem;
@@ -594,7 +594,7 @@
 }
 
 #modalSeguimientoPedido .btn-primary {
-    background: #5864ff;
+    background: #81C34D;
     border: none;
     border-radius: 8px;
     padding: 0.6rem 1.2rem;

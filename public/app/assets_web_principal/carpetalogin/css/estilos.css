@@ -1,5 +1,5 @@
 :root {
-	--primario: #5864ff;
+	--primario: #81C34D;
 	--gris-claro: #B8B8B8;
 	--sombra: 0 0 13px 0 rgba(185,185,185, .25);
 }
@@ -70,7 +70,7 @@ main {
 }
 
 .categoria.activa {
-	border:	2px solid #5864ff;
+	border:	2px solid #81C34D;
 	color: #000;
 }
 

@@ -12,7 +12,7 @@
 @section('contenido')
 <div class="content-wrapper">
     <section class="content-header d-flex justify-content-between align-items-center header-animado"
-        style="padding: 15px 25px; border-bottom: 2px solid #e0e0e0; background: linear-gradient(to right, #5864ff, #646eff); border-radius: 8px;">
+        style="padding: 15px 25px; border-bottom: 2px solid #e0e0e0; background: linear-gradient(to right, #81C34D, #81C34D); border-radius: 8px;">
         <h1 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #fff; margin: 0; font-size: 1.8rem;">
             <i class="fa fa-users mr-2" style="margin-right: 8px;"></i> Gestión de Clientes
         </h1>

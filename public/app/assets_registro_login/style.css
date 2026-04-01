@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #5864ff, #646eff, #7a7fff);
+    background: linear-gradient(135deg, #8dd656, #81C34D, #8dd656);
     height: 100vh;
     /* display: flex; */
     align-items: center;
@@ -28,7 +28,7 @@ body {
 
 /* ====== Títulos ====== */
 .form-information-childs h2 {
-    color: #646eff;
+    color: #81C34D;
     margin-bottom: 0.5rem;
     text-align: center;
 }
@@ -52,7 +52,7 @@ body {
 
 .form label i {
     margin-right: 10px;
-    color: #646eff;
+    color: #81C34D;
     font-size: 1.2rem;
 }
 
@@ -81,7 +81,7 @@ body {
 /* ====== Botón ====== */
 .form input[type="submit"] {
     width: 100%;
-    background: linear-gradient(135deg, #5864ff, #646eff);
+    background: linear-gradient(135deg, #8cd454, #81C34D);
     color: #fff;
     border: none;
     padding: 12px;
@@ -109,7 +109,7 @@ body {
 }
 
 .terms a {
-    color: #646eff;
+    color: #81C34D;
     text-decoration: none;
 }
 
@@ -146,7 +146,7 @@ p {
     justify-content: center;
     gap: 15px;
     font-size: 1.5rem;
-    color: #646eff;
+    color: #81C34D;
 }
 
 .icons i {
@@ -204,7 +204,7 @@ p {
 .form-information-childs h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #4a56e2;
+  color: #81C34D;
   margin-top: 15px;
   letter-spacing: 0.5px;
 }

@@ -23,7 +23,7 @@
 <div class="content-wrapper">
 
     <section class="content-header d-flex justify-content-between align-items-center"
-        style="padding:15px 25px;border-bottom:2px solid #e0e0e0;background:linear-gradient(to right,#5864ff,#646eff);border-radius:8px;">
+        style="padding:15px 25px;border-bottom:2px solid #e0e0e0;background:linear-gradient(to right,#81C34D,#81C34D);border-radius:8px;">
         <h1 style="font-family:'Poppins';font-weight:600;color:#fff;margin:0;font-size:1.8rem;">
             <i class="fa fa-home" style="margin-right:8px;"></i> Inicio
         </h1>
@@ -167,7 +167,7 @@
             </div>
             <div class="table-responsive">
                 <table class="table-sm" id="tablaIncidentes" style="width:100%;">
-                    <thead style="background:#5864ff;color:white;">
+                    <thead style="background:#81C34D;color:white;">
                         <tr>
                             <th>#</th>
                             <th>Título</th>

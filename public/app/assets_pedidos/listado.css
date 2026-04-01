@@ -101,7 +101,7 @@
 .estado-pedido {
     padding: 5px 10px;
     border-radius: 25px;
-    background: #2d338c;
+    background: #81c34d;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -175,7 +175,7 @@
 }
 
 .btn-ver-compra:hover {
-    background-color: #5864ff;
+    background-color: #81C34D;
     color: #fff;
     transform: scale(1.05);
 }

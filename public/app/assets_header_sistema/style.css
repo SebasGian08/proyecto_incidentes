@@ -1,6 +1,6 @@
  /* CAMBIAR THEME DE SISTEMA */
  header {
-     background-color: #444edbff !important;
+     background-color: #404040  !important;
      /* background-color: rgb(26, 26, 26) !important; */
  }
 
@@ -46,7 +46,7 @@
  }
 
  .modal.modal-fill .modal-dialog .modal-header {
-     background-color: #445563 !important
+     background-color: #3E9BD5 !important
  }
 
  .modal.modal-fill {

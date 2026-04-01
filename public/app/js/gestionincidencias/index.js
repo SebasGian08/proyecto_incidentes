@@ -48,7 +48,7 @@ $(function () {
             title: 'Acciones',
             render: function (d) {
                 return `
-                        <button class="btn btn-sm btn-primary gestionar" data-id="${d.id}">
+                        <button class="btn btn-sm btn-primary2 gestionar" data-id="${d.id}">
                             <i class="fa fa-cog"></i> Gestionar
                         </button>
                     `;

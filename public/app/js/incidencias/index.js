@@ -55,9 +55,9 @@ $(document).ready(function () {
             title: 'Acciones',
             render: function (d) {
                 if (d.estado === 'Cerrado') {
-                    return `<button class="btn btn-detalle btn-sm ver" data-id="${d.id}">Ver</button>`;
+                    return `<button class="btn btn-primary1 btn-sm ver" data-id="${d.id}">Ver</button>`;
                 }
-                return `<button class="btn btn-primary btn-sm gestionar" data-id="${d.id}">Gestionar</button>`;
+                return `<button class="btn btn-primary2 btn-sm gestionar" data-id="${d.id}">Gestionar</button>`;
             }
         }
         ]
@@ -144,7 +144,7 @@ function cargarHistorial(id) {
                     <button id="btnAgregarComentario"
                         style="
                             margin-top:10px;
-                            background:#5864ff;
+                            background:#81C34D;
                             color:#fff;
                             border:none;
                             padding:8px 15px;
