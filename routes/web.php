@@ -62,6 +62,10 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::get('/mis-incidentes', 'Auth\IncidenteController@misIncidentes')->name('incidentes.mis');
     });
 
+    Route::group(['prefix'=>'dashboard'], function() {
+        Route::get('/', 'Auth\DashboardController@index')->name('auth.dashboard');
+    });
+
 
 });
 

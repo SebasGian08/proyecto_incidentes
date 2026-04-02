@@ -112,8 +112,8 @@
                                 <i class="fa fa-home mr-5"></i> Inicio
                             </a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'dashboard.index' ? 'active' : '' }}">
-                            <a class="nav-link" href="">
+                        <li class="nav-item {{ Route::currentRouteName() == 'auth.dashboard' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('auth.dashboard') }}">
                                 <span class="active-item-here"></span>
                                 <i class="fa fa-bar-chart mr-2"></i> Dashboard
                             </a>
