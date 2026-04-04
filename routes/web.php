@@ -65,8 +65,17 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
     Route::group(['prefix'=>'dashboard'], function() {
         Route::get('/', 'Auth\DashboardController@index')->name('auth.dashboard');
     });
+    
 
 
+    Route::group(['prefix'=>'activos'], function() {
+        Route::get('/', 'Auth\ActivosController@index')->name('auth.activos');
+        Route::get('/listar', 'Auth\ActivosController@listar')->name('activos.listar');
+        Route::post('/store', 'Auth\ActivosController@store')->name('activos.store');
+        Route::get('/get/{id}', 'Auth\ActivosController@get')->name('activos.get');
+        Route::post('/update', 'Auth\ActivosController@update')->name('activos.update');
+        Route::post('/delete', 'Auth\ActivosController@delete')->name('activos.delete');
+    });
 });
 
 

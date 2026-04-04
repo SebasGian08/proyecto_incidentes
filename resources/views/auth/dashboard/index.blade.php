@@ -71,7 +71,7 @@
             </div>
 
         </div>
-
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <div style="background:#fff;padding:20px;border-radius:10px;">

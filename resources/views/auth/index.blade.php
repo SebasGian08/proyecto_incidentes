@@ -150,6 +150,64 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
+                                <i class="fa fa-tools mr-2"></i> Mantenimiento
+                            </a>
+                            <ul class="dropdown-menu multilevel scale-up-left">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.activos') }}">
+                                        <i class="fa fa-cubes mr-2"></i> Activos
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-tags mr-2"></i> Tipo de Activos
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-exclamation-triangle mr-2"></i> Severidad
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-chart-line mr-2"></i> Criticidad
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-map-marker-alt mr-2"></i> Ubicación Física
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-lock mr-2"></i> Confidencialidad
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                        <i class="fa fa-toggle-on mr-2"></i> Estado Activo
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        @endif
+
+                        @if(in_array(Auth::user()->profile_id, [
+                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
+                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        ]))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 <i class="fa fa-cog mr-2"></i> General
                             </a>
                             <ul class="dropdown-menu multilevel scale-up-left">
@@ -176,11 +234,11 @@
 
 
         <!-- Botón flotante de WhatsApp -->
-        <a href="https://wa.me/51980812235?text=Hola%20necesito%20ayuda%20con%20mi%20pedido" class="btn-wsp"
+<!--         <a href="https://wa.me/51980812235?text=Hola%20necesito%20ayuda%20con%20mi%20pedido" class="btn-wsp"
             target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" class="icon-wsp">
             <span class="tooltip-wsp">Soporte — ¿Necesitas ayuda?</span>
-        </a>
+        </a> -->
         <div class="conta mt-15" style=" padding-right: 0px !important; padding-left: 0px !important;">
             <footer class="text-center text-white" style="background-color: #313131 !important">
                 <!-- Copyright -->
