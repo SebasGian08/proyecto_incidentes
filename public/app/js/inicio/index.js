@@ -37,9 +37,13 @@ $(document).ready(function () {
             }
         },
         {
-            data: 'id',
-            render: function (data) {
-                return `<button class="btn-detalle" data-id="${data}">Ver</button>`;
+            data: null,
+            render: function (data, type, row) {
+                let botones = `<button class="btn-detalle" data-id="${row.id}">Ver</button>`;
+                if (row.estado === 'Cerrado') {
+                    botones += ` <button class="btn-primary2 btn-calificar" data-id="${row.id}">Calificar</button>`;
+                }
+                return botones;
             }
         }
         ],
@@ -59,6 +63,9 @@ $(document).ready(function () {
     });
 
 });
+
+
+
 
 document.getElementById('formIncidente').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -80,11 +87,25 @@ document.getElementById('formIncidente').addEventListener('submit', function (e)
         .then(response => response.json())
         .then(data => {
             if (data.Success) {
-                const msg = document.createElement('p');
-                msg.id = 'generalMsg';
-                msg.className = 'text-green-500 text-sm mt-2';
-                msg.innerText = data.Message;
-                form.appendChild(msg);
+                const msgDiv = document.createElement('div');
+                msgDiv.id = 'generalMsg';
+                msgDiv.innerHTML = `
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>${data.Message}</span>
+            `;
+                form.appendChild(msgDiv);
+
+                // Animación de aparición
+                setTimeout(() => msgDiv.style.opacity = 1, 50);
+
+                // Auto-desaparecer después de 4 segundos
+                setTimeout(() => {
+                    msgDiv.style.opacity = 0;
+                    setTimeout(() => msgDiv.remove(), 500);
+                }, 4000);
+
                 form.reset();
             } else if (data.Errors) {
                 for (const [field, messages] of Object.entries(data.Errors)) {
@@ -102,6 +123,7 @@ document.getElementById('formIncidente').addEventListener('submit', function (e)
         })
         .catch(err => console.error(err));
 });
+
 
 // ABRIR MODAL AL DAR CLICK EN VER
 let incidenteSeleccionado = null;
@@ -180,4 +202,81 @@ $(window).click(function (e) {
     if ($(e.target).is('#modalHistorial')) {
         $('#modalHistorial').fadeOut();
     }
+});
+
+let incidenteId = null;
+
+// Abrir modal de calificación
+$(document).on('click', '.btn-calificar', function() {
+    incidenteId = $(this).data('id');
+    $('#modalCalificar').fadeIn();
+    $('#ratingInput').val(2.5);              // valor por defecto
+    $('#ratingValue').text(2.5);
+    $('#comentarioCalificacion').val('');
+});
+
+// Mostrar valor al mover la barra
+$('#ratingInput').on('input', function() {
+    $('#ratingValue').text($(this).val());
+});
+
+// Cerrar modal
+$('.close-modal').click(function() {
+    $(this).closest('.modal-custom').fadeOut();
+});
+
+// Enviar calificación usando fetch()
+$('#btnEnviarCalificacion').click(function() {
+    const rating = $('#ratingInput').val();
+    const comentario = $('#comentarioCalificacion').val();
+
+    if(!rating) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Selecciona un rating antes de enviar!'
+        });
+        return;
+    }
+
+    fetch('/auth/incidentes/calificar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('input[name="_token"]').val()
+        },
+        body: JSON.stringify({
+            id: incidenteId,
+            rating: rating,
+            comentario: comentario
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.Success) {
+            $('#modalCalificar').fadeOut();
+            Swal.fire({
+                icon: 'success',
+                title: '¡Calificación enviada!',
+                text: data.Message
+            });
+            incidenteId = null;
+            tabla.ajax.reload(); // recargar tabla si usas DataTables
+        } else {
+            let errores = Object.values(data.Errors).flat().join("\n");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errores || 'No se pudo enviar la calificación'
+            });
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ocurrió un error inesperado'
+        });
+    });
 });

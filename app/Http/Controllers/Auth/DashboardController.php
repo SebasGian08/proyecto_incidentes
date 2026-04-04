@@ -19,12 +19,14 @@ class DashboardController extends Controller
         $incidenciasResumen = $this->getIncidenciasResumen($fechaDesde, $fechaHasta);
         $mttr = $this->getMTTR($fechaDesde, $fechaHasta);
         $incidenciasSLA = $this->getIncidenciasDentroSLA($fechaDesde, $fechaHasta);
+        $satisfaccion = $this->getSatisfaccion($fechaDesde, $fechaHasta);
 
         return view('auth.dashboard.index', compact(
             'incidenciasPorEstado',
             'incidenciasResumen',
             'mttr',
             'incidenciasSLA',
+            'satisfaccion',
             'fechaDesde',
             'fechaHasta'
         ));
@@ -87,21 +89,13 @@ class DashboardController extends Controller
 
     private function getMTTR($fecha_desde, $fecha_hasta)
     {
-        $sub = DB::table('historial_incidentes')
-            ->select('incidente_id', DB::raw('MIN(fecha_accion) as fecha_inicio'))
-            ->where('accion', 'Actualización')
-            ->groupBy('incidente_id');
-
         $data = DB::table('tickets_incidentes as t')
-            ->joinSub($sub, 'h', function($join){
-                $join->on('t.id', '=', 'h.incidente_id');
-            })
             ->whereBetween('t.created_at', [$fecha_desde, $fecha_hasta])
             ->whereNotNull('t.fecha_cierre')
             ->whereNull('t.deleted_at')
             ->select(
                 DB::raw("DATE_FORMAT(t.created_at, '%Y-%m') as periodo"),
-                DB::raw("AVG(TIMESTAMPDIFF(MINUTE, h.fecha_inicio, t.fecha_cierre)) as promedio_minutos")
+                DB::raw("AVG(TIMESTAMPDIFF(MINUTE, t.created_at, t.fecha_cierre)) as promedio_minutos")
             )
             ->groupBy('periodo')
             ->orderBy('periodo')
@@ -139,6 +133,34 @@ class DashboardController extends Controller
             $categories[] = $row->periodo;
             $porcentaje = $row->total_cerradas > 0 ? round(($row->dentro_sla / $row->total_cerradas) * 100, 2) : 0;
             $series[] = $porcentaje;
+        }
+
+        return [
+            'categories' => $categories,
+            'series' => $series
+        ];
+    }
+    private function getSatisfaccion($fecha_desde, $fecha_hasta)
+    {
+        $data = DB::table('incidente_calificaciones as c')
+            ->join('tickets_incidentes as t', 'c.incidente_id', '=', 't.id')
+            ->whereBetween('t.created_at', [$fecha_desde, $fecha_hasta])
+            ->select(
+                DB::raw("DATE_FORMAT(t.created_at, '%Y-%m') as periodo"),
+                DB::raw("SUM(c.rating) as total_puntos"),
+                DB::raw("COUNT(c.id) as total_encuestas")
+            )
+            ->groupBy('periodo')
+            ->orderBy('periodo')
+            ->get();
+
+        $categories = [];
+        $series = [];
+
+        foreach ($data as $row) {
+            $categories[] = $row->periodo;
+            $satisfaccion = $row->total_encuestas > 0 ? round(($row->total_puntos / ($row->total_encuestas * 5)) * 100, 2) : 0;
+            $series[] = $satisfaccion;
         }
 
         return [

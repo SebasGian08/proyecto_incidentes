@@ -85,6 +85,15 @@
             </div>
         </div>
 
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div style="background:#fff;padding:20px;border-radius:10px;margin-top:20px;">
+                    <div id="graficoSatisfaccion"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
@@ -197,6 +206,32 @@ Highcharts.chart('graficoSLA', {
         name: 'Cumplimiento SLA',
         data: @json($incidenciasSLA['series']),
         color: '#81C34D'
+    }]
+});
+
+Highcharts.chart('graficoSatisfaccion', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '% Satisfacción del Cliente'
+    },
+    xAxis: {
+        categories: @json($satisfaccion['categories'])
+    },
+    yAxis: {
+        title: {
+            text: 'Porcentaje (%)'
+        },
+        max: 100
+    },
+    tooltip: {
+        pointFormat: '{point.y}%'
+    },
+    series: [{
+        name: 'Satisfacción',
+        data: @json($satisfaccion['series']),
+        color: '#007BFF'
     }]
 });
 </script>

@@ -60,14 +60,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::post('/update', 'Auth\IncidenteController@update')->name('incidentes.update');
         Route::get('/incidentes/gestion', 'Auth\IncidenteController@gestion')->name('incidentes.gestion');
         Route::get('/mis-incidentes', 'Auth\IncidenteController@misIncidentes')->name('incidentes.mis');
+        Route::post('/calificar', 'Auth\IncidenteController@calificar')->name('incidentes.calificar');
     });
 
     Route::group(['prefix'=>'dashboard'], function() {
         Route::get('/', 'Auth\DashboardController@index')->name('auth.dashboard');
     });
     
-
-
     Route::group(['prefix'=>'activos'], function() {
         Route::get('/', 'Auth\ActivosController@index')->name('auth.activos');
         Route::get('/listar', 'Auth\ActivosController@listar')->name('activos.listar');
@@ -76,6 +75,62 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::post('/update', 'Auth\ActivosController@update')->name('activos.update');
         Route::post('/delete', 'Auth\ActivosController@delete')->name('activos.delete');
     });
+
+    Route::group(['prefix'=>'tipo-activos'], function() {
+        Route::get('/tipo-activos', 'Auth\TipoActivoController@index')->name('auth.tipo_activos');
+        Route::get('/listar', 'Auth\TipoActivoController@listar')->name('tipo_activos.listar');
+        Route::post('/store', 'Auth\TipoActivoController@store')->name('tipo_activos.store');
+        Route::get('/get/{id}', 'Auth\TipoActivoController@get')->name('tipo_activos.get');
+        Route::post('/update', 'Auth\TipoActivoController@update')->name('tipo_activos.update');
+        Route::post('/delete', 'Auth\TipoActivoController@delete')->name('tipo_activos.delete');
+    });
+
+    Route::group(['prefix'=>'severidad'], function() {
+        Route::get('/severidad', 'Auth\SeveridadController@index')->name('auth.severidad');
+        Route::get('/listar', 'Auth\SeveridadController@listar')->name('severidad.listar');
+        Route::post('/store', 'Auth\SeveridadController@store')->name('severidad.store');
+        Route::get('/get/{id}', 'Auth\SeveridadController@get')->name('severidad.get');
+        Route::post('/update', 'Auth\SeveridadController@update')->name('severidad.update');
+        Route::post('/delete', 'Auth\SeveridadController@delete')->name('severidad.delete');
+    });
+    
+    Route::group(['prefix'=>'criticidad'], function() {
+        Route::get('/criticidad', 'Auth\CriticidadController@index')->name('auth.criticidad');
+        Route::get('/listar', 'Auth\CriticidadController@listar')->name('criticidad.listar');
+        Route::post('/store', 'Auth\CriticidadController@store')->name('criticidad.store');
+        Route::get('/get/{id}', 'Auth\CriticidadController@get')->name('criticidad.get');
+        Route::post('/update', 'Auth\CriticidadController@update')->name('criticidad.update');
+        Route::post('/delete', 'Auth\CriticidadController@delete')->name('criticidad.delete');
+    });
+
+    Route::group(['prefix'=>'ubicacion-fisica'], function() {
+        Route::get('/ubicacion-fisica', 'Auth\UbicacionFisicaController@index')->name('auth.ubicacion_fisica');
+        Route::get('/listar', 'Auth\UbicacionFisicaController@listar')->name('ubicacion-fisica.listar');
+        Route::post('/store', 'Auth\UbicacionFisicaController@store')->name('ubicacion-fisica.store');
+        Route::get('/get/{id}', 'Auth\UbicacionFisicaController@get')->name('ubicacion-fisica.get');
+        Route::post('/update', 'Auth\UbicacionFisicaController@update')->name('ubicacion-fisica.update');
+        Route::post('/delete', 'Auth\UbicacionFisicaController@delete')->name('ubicacion-fisica.delete');
+    });
+
+    Route::group(['prefix'=>'confidencialidad'], function() {
+        Route::get('/confidencialidad', 'Auth\ConfidencialidadController@index')->name('auth.confidencialidad');
+        Route::get('/listar', 'Auth\ConfidencialidadController@listar')->name('confidencialidad.listar');
+        Route::post('/store', 'Auth\ConfidencialidadController@store')->name('confidencialidad.store');
+        Route::get('/get/{id}', 'Auth\ConfidencialidadController@get')->name('confidencialidad.get');
+        Route::post('/update', 'Auth\ConfidencialidadController@update')->name('confidencialidad.update');
+        Route::post('/delete', 'Auth\ConfidencialidadController@delete')->name('confidencialidad.delete');
+    });
+
+    Route::group(['prefix'=>'estado_activo'], function() {
+        Route::get('/estado_activo', 'Auth\EstadoActivoController@index')->name('auth.estado_activo');
+        Route::get('/listar', 'Auth\EstadoActivoController@listar')->name('estado_activo.listar');
+        Route::post('/store', 'Auth\EstadoActivoController@store')->name('estado_activo.store');
+        Route::get('/get/{id}', 'Auth\EstadoActivoController@get')->name('estado_activo.get');
+        Route::post('/update', 'Auth\EstadoActivoController@update')->name('estado_activo.update');
+        Route::post('/delete', 'Auth\EstadoActivoController@delete')->name('estado_activo.delete');
+
+    });
+
 });
 
 

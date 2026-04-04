@@ -161,37 +161,37 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                    <a class="nav-link" href="{{ route('auth.tipo_activos') }}">
                                         <i class="fa fa-tags mr-2"></i> Tipo de Activos
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                    <a class="nav-link" href="{{ route('auth.severidad') }}">
                                         <i class="fa fa-exclamation-triangle mr-2"></i> Severidad
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
-                                        <i class="fa fa-chart-line mr-2"></i> Criticidad
+                                    <a class="nav-link" href="{{ route('auth.criticidad') }}">
+                                        <i class="fa fa-bolt mr-2"></i> Criticidad
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
-                                        <i class="fa fa-map-marker-alt mr-2"></i> Ubicación Física
+                                    <a class="nav-link" href="{{ route('auth.ubicacion_fisica') }}">
+                                        <i class="fa fa-map-marker mr-2"></i> Ubicación Física
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                    <a class="nav-link" href="{{ route('auth.confidencialidad') }}">
                                         <i class="fa fa-lock mr-2"></i> Confidencialidad
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.usuarios') }}">
+                                    <a class="nav-link" href="{{ route('auth.estado_activo') }}">
                                         <i class="fa fa-toggle-on mr-2"></i> Estado Activo
                                     </a>
                                 </li>

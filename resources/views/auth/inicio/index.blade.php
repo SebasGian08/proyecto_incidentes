@@ -14,6 +14,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('app/assets_registro_login/style.css') }}">
 <link rel="stylesheet" href="{{ asset('app/assets_incidentes_registro/style.css') }}">
+<style>
+
+</style>
 @endsection
 
 
@@ -77,7 +80,7 @@
                         <i class='bx bx-error-circle' style="position:absolute; left:10px;"></i>
                         <select name="severidad" required style="padding-left:35px; appearance:auto;">
                             <option value="" disabled selected>Seleccione la severidad</option>
-                            @foreach(\DB::table('maestro_severidad')->get() as $sev)
+                            @foreach(\DB::table('maestro_severidad')->whereNull('deleted_at')->get() as $sev)
                             <option value="{{ $sev->id }}" {{ old('severidad') == $sev->id ? 'selected' : '' }}>
                                 {{ $sev->nombre }}
                             </option>
@@ -94,7 +97,7 @@
                         <i class='bx bx-desktop' style="position:absolute; left:10px;"></i>
                         <select name="activo_id" required style="padding-left:35px; appearance:auto;">
                             <option value="" disabled selected>Seleccione el activo</option>
-                            @foreach(\DB::table('activos_ti')->get() as $activo)
+                            @foreach(\DB::table('activos_ti')->whereNull('deleted_at')->get() as $activo)
                             <option value="{{ $activo->id }}" {{ old('activo_id') == $activo->id ? 'selected' : '' }}>
                                 {{ $activo->nombre }}
                             </option>
@@ -132,7 +135,15 @@
 
                     <!-- Mensaje general -->
                     @if(session('message'))
-                    <p class="text-green-500 text-sm mt-2">{{ session('message') }}</p>
+                    <div class="flex items-center bg-green-100 border border-green-400 text-green-800 px-4 py-2 rounded mt-2"
+                        role="alert">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{ session('message') }}</span>
+                    </div>
                     @endif
                 </form>
             </div>
@@ -145,24 +156,41 @@
             </h4>
             <div class="filtros-box">
 
-                <select id="filtroEstado" class="filtro-input">
-                    <option value="">Estado</option>
-                    @foreach(\DB::table('maestro_estado_ticket')->get() as $est)
-                    <option value="{{ $est->nombre }}">{{ $est->nombre }}</option>
-                    @endforeach
-                </select>
+                <!-- Filtro Estado -->
+                <label for="filtroEstado" style="display:flex; flex-direction: column; margin-bottom: 10px;">
+                    Estado del Ticket
+                    <select id="filtroEstado" class="filtro-input">
+                        <option value="">Todos</option>
+                        @foreach(\DB::table('maestro_estado_ticket')->whereNull('deleted_at')->get() as $est)
+                        <option value="{{ $est->nombre }}">{{ $est->nombre }}</option>
+                        @endforeach
+                    </select>
+                </label>
 
-                <select id="filtroActivo" class="filtro-input">
-                    <option value="">Activo</option>
-                    @foreach(\DB::table('activos_ti')->get() as $act)
-                    <option value="{{ $act->id }}">{{ $act->nombre }}</option>
-                    @endforeach
-                </select>
+                <!-- Filtro Activo -->
+                <label for="filtroActivo" style="display:flex; flex-direction: column; margin-bottom: 10px;">
+                    Activo TI
+                    <select id="filtroActivo" class="filtro-input">
+                        <option value="">Todos</option>
+                        @foreach(\DB::table('activos_ti')->whereNull('deleted_at')->get() as $act)
+                        <option value="{{ $act->id }}">{{ $act->nombre }}</option>
+                        @endforeach
+                    </select>
+                </label>
 
-                <input type="date" id="fechaInicio" class="filtro-input">
-                <input type="date" id="fechaFin" class="filtro-input">
+                <!-- Fecha Inicio -->
+                <label for="fechaInicio" style="display:flex; flex-direction: column; margin-bottom: 10px;">
+                    Fecha Inicio
+                    <input type="date" id="fechaInicio" class="filtro-input">
+                </label>
 
-                <button id="btnFiltrar" class="btn-filtrar">Filtrar</button>
+                <!-- Fecha Fin -->
+                <label for="fechaFin" style="display:flex; flex-direction: column; margin-bottom: 10px;">
+                    Fecha Fin
+                    <input type="date" id="fechaFin" class="filtro-input">
+                </label>
+
+                <button id="btnFiltrar" class="btn-filtrar" style="height: 38px; margin-top: 20px;;">Filtrar</button>
 
             </div>
             <div class="table-responsive">
@@ -184,23 +212,26 @@
 </div>
 
 <!-- MODAL HISTORIAL -->
-<div id="modalHistorial" class="modal-custom">
+<div id="modalCalificar" class="modal-custom">
     <div class="modal-content-custom">
         <span class="close-modal">&times;</span>
-        <h3>Seguimiento del Incidente</h3>
+        <h3>Calificar Incidente</h3>
 
-        <div id="timelineHistorial" class="timeline"></div>
-
-        <div style="margin-top:15px; text-align: center;">
-            <textarea id="nuevoComentario" class="form-control"
-                placeholder="Escribe un comentario..."></textarea>
-
-            <button id="btnAgregarComentario" class="btn-filtrar mt-2">
-                Agregar Comentario
-            </button>
+        <div style="margin-top: 10px;">
+            <label for="ratingInput">Rating: <span id="ratingValue">2.5</span></label>
+            <input type="range" id="ratingInput" min="0.5" max="5" step="0.5" value="2.5" style="width:100%;">
         </div>
+
+        <div style="margin-top:10px;">
+            <label for="comentarioCalificacion">Comentario / Recomendación:</label>
+            <textarea id="comentarioCalificacion" class="form-control" placeholder="Escribe tu recomendación..."></textarea>
+        </div>
+
+        <button id="btnEnviarCalificacion" class="btn-filtrar mt-2">Enviar</button>
     </div>
 </div>
+
+
 @endsection
 
 
@@ -208,6 +239,7 @@
 @section('scripts')
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('app/js/inicio/index.js') }}"></script>
 
 @endsection

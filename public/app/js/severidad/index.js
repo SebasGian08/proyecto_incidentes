@@ -1,0 +1,154 @@
+let tabla;
+
+$(document).ready(function () {
+
+    listarSeveridad();
+
+    $('#btnRegistrarSeveridad').click(function () {
+        $('#modalSeveridad').modal('show');
+    });
+
+    $('#guardarSeveridad').click(function () {
+        registrarSeveridad();
+    });
+
+});
+
+
+function listarSeveridad() {
+
+    tabla = $('#tableSeveridad').DataTable({
+        processing: true,
+        destroy: true,
+        ajax: {
+            url: '/auth/severidad/listar',
+            dataSrc: 'data'
+        },
+        columns: [
+            { data: 'id', title: '#' },
+            { data: 'nombre', title: 'Nombre' },
+            { data: 'sla_minutos', title: 'SLA (min)' },
+            {
+                data: null,
+                title: 'Acciones',
+                render: function (data) {
+                    return `
+                        <button class="btn btn-sm btn-primary btn-update" data-id="${data.id}">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger btn-delete" data-id="${data.id}">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    `;
+                }
+            }
+        ]
+    });
+
+}
+
+
+function registrarSeveridad() {
+
+    let data = {
+        nombre: $('#nombre').val(),
+        sla_minutos: $('#sla_minutos').val(),
+        _token: $('input[name="_token"]').val()
+    };
+
+    if (!data.nombre || !data.sla_minutos) {
+        Swal.fire('Atención', 'Completa los campos', 'warning');
+        return;
+    }
+
+    $.ajax({
+        url: '/auth/severidad/store',
+        method: 'POST',
+        data: data,
+
+        beforeSend: () => Swal.fire({ title: 'Guardando...', didOpen: () => Swal.showLoading() }),
+
+        success: function (res) {
+            if (res.success) {
+                Swal.fire('Correcto', res.message, 'success');
+                $('#modalSeveridad').modal('hide');
+                tabla.ajax.reload();
+            } else {
+                Swal.fire('Error', res.message, 'error');
+            }
+        }
+    });
+}
+
+
+$(document).on('click', '.btn-update', function () {
+
+    let id = $(this).data('id');
+
+    $.get(`/auth/severidad/get/${id}`, function (res) {
+
+        $('#edit_id').val(res.id);
+        $('#edit_nombre').val(res.nombre);
+        $('#edit_sla_minutos').val(res.sla_minutos);
+
+        $('#modalEditarSeveridad').modal('show');
+
+    });
+
+});
+
+
+$('#actualizarSeveridad').click(function () {
+
+    $.ajax({
+        url: '/auth/severidad/update',
+        method: 'POST',
+        data: {
+            id: $('#edit_id').val(),
+            nombre: $('#edit_nombre').val(),
+            sla_minutos: $('#edit_sla_minutos').val(),
+            _token: $('input[name="_token"]').val()
+        },
+
+        beforeSend: () => Swal.fire({ title: 'Actualizando...', didOpen: () => Swal.showLoading() }),
+
+        success: function (res) {
+
+            if (res.success) {
+                Swal.fire('Correcto', res.message, 'success');
+                $('#modalEditarSeveridad').modal('hide');
+                tabla.ajax.reload();
+            } else {
+                Swal.fire('Error', res.message, 'error');
+            }
+
+        }
+    });
+
+});
+
+
+$(document).on('click', '.btn-delete', function () {
+
+    let id = $(this).data('id');
+
+    Swal.fire({
+        title: '¿Eliminar?',
+        icon: 'warning',
+        showCancelButton: true
+    }).then((r) => {
+
+        if (r.isConfirmed) {
+
+            $.post('/auth/severidad/delete', {
+                id: id,
+                _token: $('input[name="_token"]').val()
+            }, function () {
+                tabla.ajax.reload();
+            });
+
+        }
+
+    });
+
+});

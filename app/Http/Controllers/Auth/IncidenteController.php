@@ -365,4 +365,36 @@ class IncidenteController extends Controller
 
         return response()->json(['data' => $data]);
     }
+
+    // Método para guardar calificación y comentario
+    public function calificar(Request $request)
+    {
+        // Validación
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:tickets_incidentes,id',
+            'rating' => 'required|numeric|min:0.5|max:5',
+            'comentario' => 'nullable|string|max:500',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'Success' => false,
+                'Errors' => $validator->errors()
+            ]);
+        }
+
+        \DB::table('incidente_calificaciones')->insert([
+            'incidente_id' => $request->id,
+            'user_id' => auth()->id(),
+            'rating' => $request->rating,
+            'comentario' => $request->comentario,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'Success' => true,
+            'Message' => 'Calificación enviada correctamente.'
+        ]);
+    }
 }
