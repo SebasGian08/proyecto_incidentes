@@ -61,6 +61,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::get('/incidentes/gestion', 'Auth\IncidenteController@gestion')->name('incidentes.gestion');
         Route::get('/mis-incidentes', 'Auth\IncidenteController@misIncidentes')->name('incidentes.mis');
         Route::post('/calificar', 'Auth\IncidenteController@calificar')->name('incidentes.calificar');
+        Route::get('/notification', 'Auth\IncidenteController@notification')->name('incidentes.notification');
+        Route::post('/notificaciones/leidas', 'Auth\IncidenteController@marcarLeidas')->name('incidentes.leidas');
     });
 
     Route::group(['prefix'=>'dashboard'], function() {
@@ -130,7 +132,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::post('/delete', 'Auth\EstadoActivoController@delete')->name('estado_activo.delete');
 
     });
-
+    
 });
 
 

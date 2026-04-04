@@ -397,4 +397,46 @@ class IncidenteController extends Controller
             'Message' => 'Calificación enviada correctamente.'
         ]);
     }
+
+    public function notification()
+{
+    $userId = Auth::id();
+
+    $data = \DB::table('historial_incidentes as h')
+        ->join('tickets_incidentes as t', 'h.incidente_id', '=', 't.id')
+        ->join('users as u', 'h.usuario_id', '=', 'u.id')
+        ->select(
+            'h.id',
+            't.id as incidente_id',
+            't.titulo',
+            'h.comentario',
+            'h.fecha_accion',
+            'h.visto',
+            'u.nombres as usuario'
+        )
+        ->where(function($q) use ($userId){
+            $q->where('t.usuario_reporta_id', $userId)
+              ->orWhere('t.tecnico_asignado_id', $userId);
+        })
+        ->where('h.accion', 'Actualización')
+        ->orderBy('h.fecha_accion', 'desc')
+        ->limit(10)
+        ->get();
+
+    $noLeidas = $data->where('visto', 0)->count();
+
+    return response()->json([
+        'notificaciones' => $data,
+        'no_leidas' => $noLeidas
+    ]);
+}
+
+    public function marcarLeidas()
+    {
+        \DB::table('historial_incidentes')
+            ->where('visto', 0)
+            ->update(['visto' => 1]);
+
+        return response()->json(['success' => true]);
+    }
 }

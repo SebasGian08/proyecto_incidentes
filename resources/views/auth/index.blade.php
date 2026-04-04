@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('auth/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('app/assets_header_sistema/style.css') }}">
     <link rel="stylesheet" href="{{ asset('app/assets_header_sistema/wsp.css') }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('styles')
 </head>
 
@@ -40,6 +40,16 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav mt-5">
+                            <li id="notifications" class="dropdown notifications-menu" style="margin-right: 10px;">
+                                <button type="button" class="mt-3 dropdown-toggle btn btn-light" data-toggle="dropdown"
+                                    style="margin-top:15px !important;">
+                                    <i class="mdi mdi-bell faa-ring animated"></i>
+                                    <span class="badge badge-danger pt-3 pb-0" id="number_notify"></span>
+                                </button>
+                                <ul class="dropdown-menu scale-up" id="list_notification">
+                                    <li class="header">Tienes <span id="counNotificacion"></span> notificaciones</li>
+                                </ul>
+                            </li>
                             <li class="dropdown user user-menu"
                                 style="background: #81c34d; border-radius: 50px;height: 50px !important;">
                                 <a href="#" class="dropdown-toggle d-flex align-items-center" data-toggle="dropdown"
@@ -234,7 +244,7 @@
 
 
         <!-- Botón flotante de WhatsApp -->
-<!--         <a href="https://wa.me/51980812235?text=Hola%20necesito%20ayuda%20con%20mi%20pedido" class="btn-wsp"
+        <!--         <a href="https://wa.me/51980812235?text=Hola%20necesito%20ayuda%20con%20mi%20pedido" class="btn-wsp"
             target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" class="icon-wsp">
             <span class="tooltip-wsp">Soporte — ¿Necesitas ayuda?</span>

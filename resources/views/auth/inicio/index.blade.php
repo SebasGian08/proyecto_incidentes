@@ -215,7 +215,7 @@
 <div id="modalCalificar" class="modal-custom">
     <div class="modal-content-custom">
         <span class="close-modal">&times;</span>
-        <h3>Calificar Incidente</h3>
+        <h3>Calificación de Resolución de Incidencias
 
         <div style="margin-top: 10px;">
             <label for="ratingInput">Rating: <span id="ratingValue">2.5</span></label>

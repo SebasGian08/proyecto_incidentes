@@ -1,6 +1,6 @@
  /* CAMBIAR THEME DE SISTEMA */
  header {
-     background-color: #404040  !important;
+     background-color: #404040 !important;
      /* background-color: rgb(26, 26, 26) !important; */
  }
 
@@ -125,4 +125,45 @@
          transform: scale(1.05) translateY(-3px);
          filter: brightness(1.2);
      }
+ }
+
+ #list_notification {
+     max-height: 320px;
+     overflow-y: auto;
+ }
+
+ .li_notifi {
+     display: flex;
+     gap: 10px;
+     padding: 10px;
+     border-bottom: 1px solid #eee;
+     transition: 0.2s;
+ }
+
+ .li_notifi:hover {
+     background: #f5f5f5;
+     cursor: pointer;
+ }
+
+ .li_notifi i {
+     color: #81C34D;
+     font-size: 16px;
+     margin-top: 3px;
+ }
+
+ .li_notifi .time {
+     font-size: 11px;
+     color: #999;
+ }
+
+ /* 🔴 NO LEÍDAS */
+ .no-leida {
+     background: #eef7ff;
+     border-left: 3px solid #2196f3;
+     font-weight: 500;
+ }
+
+ /* badge */
+ #number_notify {
+     font-size: 11px;
  }

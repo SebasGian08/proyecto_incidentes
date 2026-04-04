@@ -444,3 +444,51 @@ function readImage(input, img) {
         img.attr("src", "/auth/layout/img/default.gif");
     }
 }
+
+function notification() {
+    $.get("/auth/incidentes/notification", function (data) {
+
+        $("#list_notification").empty();
+
+        let count = data.no_leidas;
+
+        if (data.notificaciones.length > 0) {
+
+            data.notificaciones.forEach(n => {
+
+                let clase = n.visto == 0 ? 'no-leida' : '';
+
+                $("#list_notification").append(`
+                    <li class="li_notifi ${clase}" data-id="${n.id}">
+                        <i class="fa fa-bell"></i>
+                        <div>
+                            <b>${n.titulo}</b><br>
+                            <small>${n.comentario}</small><br>
+                            <span class="time">${moment(n.fecha_accion).fromNow()}</span>
+                        </div>
+                    </li>
+                `);
+            });
+
+        } else {
+            $("#list_notification").append(
+                '<li class="li_notifi">No hay notificaciones</li>'
+            );
+        }
+
+        $("#number_notify").text(count);
+        $("#counNotificacion").text(count);
+    });
+}
+
+// marcar como leídas al abrir
+$('#notifications button').click(function () {
+    $.post("/auth/incidentes/notificaciones/leidas", {
+        _token: $('meta[name="csrf-token"]').attr('content')
+    }, function () {
+        notification();
+    });
+});
+
+notification();
+setInterval(notification, 30000);
