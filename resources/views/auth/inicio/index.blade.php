@@ -15,7 +15,16 @@
 <link rel="stylesheet" href="{{ asset('app/assets_registro_login/style.css') }}">
 <link rel="stylesheet" href="{{ asset('app/assets_incidentes_registro/style.css') }}">
 <style>
-
+.modal-content-custom {
+    width: 80%;
+    max-width: 1000px; /* tamaño LG */
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px;
+}
 </style>
 @endsection
 
@@ -209,6 +218,26 @@
         </div>
     </div>
 
+</div>
+
+<!-- MODAL HISTORIAL -->
+<div id="modalHistorial" class="modal-custom">
+    <div class="modal-content-custom">
+        <span class="close-modal">&times;</span>
+        <h3>Seguimiento del Incidente</h3>
+        <div id="timelineHistorial" class="timeline"></div>
+        <hr>
+        <div style="margin-top:15px; text-align:center;">
+            <textarea id="nuevoComentario" class="form-control"
+                placeholder="Escribe un comentario..."></textarea>
+
+            <button id="btnAgregarComentario" class="btn-filtrar mt-2">
+                Agregar Comentario
+            </button>
+
+        </div>
+
+    </div>
 </div>
 
 <!-- MODAL HISTORIAL -->
