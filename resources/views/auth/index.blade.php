@@ -115,23 +115,26 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
 
-                        {{-- Inicio --}}
                         <li class="nav-item {{ Route::currentRouteName() == 'auth.inicio' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('auth.inicio') }}">
                                 <span class="active-item-here"></span>
                                 <i class="fa fa-home mr-5"></i> Inicio
                             </a>
                         </li>
+                        @if(in_array(Auth::user()->profile_id, [
+                        \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR
+                        ]))
                         <li class="nav-item {{ Route::currentRouteName() == 'auth.dashboard' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('auth.dashboard') }}">
                                 <span class="active-item-here"></span>
                                 <i class="fa fa-bar-chart mr-2"></i> Dashboard
                             </a>
                         </li>
+                        @endif
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
-                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
-                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR
                         ]))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('incidentes.index') }}">
@@ -142,8 +145,7 @@
 
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
-                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
-                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        \BolsaTrabajo\App::$PERFIL_OPERADOR
                         ]))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('incidentes.gestion') }}">
@@ -154,8 +156,7 @@
 
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
-                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
-                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR
                         ]))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
@@ -212,8 +213,7 @@
 
                         @if(in_array(Auth::user()->profile_id, [
                         \BolsaTrabajo\App::$PERFIL_DESARROLLADOR,
-                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR,
-                        \BolsaTrabajo\App::$PERFIL_JEFE
+                        \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR
                         ]))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"

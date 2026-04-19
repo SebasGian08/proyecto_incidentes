@@ -41,7 +41,7 @@ $(function () {
         },
         {
             data: 'created_at',
-            title: 'Fecha'
+            title: 'Fecha Creación'
         },
         {
             data: null,

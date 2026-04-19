@@ -19,7 +19,11 @@
             </a>
             <h2>Iniciar Sesión</h2>
             <p class="sub-text">Accede con tu cuenta registrada</p>
-
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
             <form class="form form-login" method="POST" action="{{ route('auth.login.post') }}">
                 @csrf
                 <div>

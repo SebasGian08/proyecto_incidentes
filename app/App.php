@@ -26,11 +26,11 @@ class App
 
     public static $PERFIL_DESARROLLADOR= 1;
     public static $PERFIL_ADMINISTRADOR = 2;
-    public static $PERFIL_JEFE = 3;
-    public static $PERFIL_ANALISTA_VENDEDOR= 4;
-    public static $PERFIL_VENDEDOR = 5;
-    public static $PERFIL_CLIENTE_ASOCIADO = 6;
-    public static $PERFIL_MOTORIZADO = 7;
+    public static $PERFIL_OPERADOR = 3;
+    public static $PERFIL_USUARIO= 4;
+
+
+
    
 
     public static function ObtenerNombreMes($mes)
