@@ -140,6 +140,7 @@ class DashboardController extends Controller
             'series' => $series
         ];
     }
+    
     private function getSatisfaccion($fecha_desde, $fecha_hasta)
     {
         $data = DB::table('incidente_calificaciones as c')

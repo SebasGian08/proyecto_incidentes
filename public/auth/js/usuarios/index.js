@@ -24,7 +24,14 @@ $(function () {
             },
             { title: "Nombres y Apellidos ", data: "nombres" },
             { title: "Usuario de Ingreso ", data: "email" },
-            { title: "Perfil", data: "profile.name", className: "text-center" },
+            {
+                title: "Perfil",
+                data: "profile",
+                className: "text-center",
+                render: function (data) {
+                    return data && data.name ? data.name : "Sin perfil";
+                }
+            },
             {
                 title: "Estado",
                 data: "estado",
@@ -38,11 +45,11 @@ $(function () {
                 title: "Online",
                 data: null,
                 className: "text-center",
-                render: function(data, type, row) {
+                render: function (data, type, row) {
                     console.log('row.online:', row.online); // Para depuración
-            
+
                     const onlineStatus = Number(row.online);
-            
+
                     if (onlineStatus === 0) {
                         return "<p class='text-danger'>● OffLine</p>";
                     } else if (onlineStatus === 1) {
@@ -62,7 +69,7 @@ $(function () {
                 data: "cerrar_sesion",
                 className: "text-center"
             },
-            
+
             {
                 data: null,
                 defaultContent:
