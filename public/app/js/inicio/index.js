@@ -41,7 +41,11 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 let botones = `<button class="btn-detalle" data-id="${row.id}">Ver</button>`;
                 if (row.estado === 'Cerrado') {
-                    botones += ` <button class="btn-primary2 btn-calificar" data-id="${row.id}">Calificar</button>`;
+                    if (row.ya_calificado > 0) {
+                        /* botones += ` <button class="btn-secondary" disabled>Calificado</button>`; */
+                    } else {
+                        botones += ` <button class="btn-primary2 btn-calificar" data-id="${row.id}">Calificar</button>`;
+                    }
                 }
                 return botones;
             }

@@ -100,7 +100,12 @@ class IncidenteController extends Controller
                 't.titulo',
                 'e.nombre as estado',
                 'a.nombre as activo',
-                't.created_at'
+                't.created_at',
+                \DB::raw("(
+                    SELECT COUNT(*) 
+                    FROM incidente_calificaciones c 
+                    WHERE c.incidente_id = t.id
+                ) as ya_calificado")
             )
             ->where('t.usuario_reporta_id', Auth::id())
             ->whereNull('t.deleted_at');
@@ -356,7 +361,8 @@ class IncidenteController extends Controller
                 'e.nombre as estado',
                 's.nombre as severidad',
                 'a.nombre as activo',
-                't.created_at'
+                't.created_at',
+                't.fecha_cierre'
             )
             ->where('t.tecnico_asignado_id', Auth::id())
             ->whereNull('t.deleted_at')
@@ -369,7 +375,6 @@ class IncidenteController extends Controller
     // Método para guardar calificación y comentario
     public function calificar(Request $request)
     {
-        // Validación
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:tickets_incidentes,id',
             'rating' => 'required|numeric|min:0.5|max:5',
@@ -383,6 +388,18 @@ class IncidenteController extends Controller
             ]);
         }
 
+        $existe = \DB::table('incidente_calificaciones')
+            ->where('incidente_id', $request->id)
+            ->exists();
+
+        if ($existe) {
+            return response()->json([
+                'Success' => false,
+                'Message' => 'Este incidente ya fue calificado'
+            ]);
+        }
+
+        // Insertar
         \DB::table('incidente_calificaciones')->insert([
             'incidente_id' => $request->id,
             'user_id' => auth()->id(),
@@ -399,37 +416,37 @@ class IncidenteController extends Controller
     }
 
     public function notification()
-{
-    $userId = Auth::id();
+    {
+        $userId = Auth::id();
 
-    $data = \DB::table('historial_incidentes as h')
-        ->join('tickets_incidentes as t', 'h.incidente_id', '=', 't.id')
-        ->join('users as u', 'h.usuario_id', '=', 'u.id')
-        ->select(
-            'h.id',
-            't.id as incidente_id',
-            't.titulo',
-            'h.comentario',
-            'h.fecha_accion',
-            'h.visto',
-            'u.nombres as usuario'
-        )
-        ->where(function($q) use ($userId){
-            $q->where('t.usuario_reporta_id', $userId)
-              ->orWhere('t.tecnico_asignado_id', $userId);
-        })
-        ->where('h.accion', 'Actualización')
-        ->orderBy('h.fecha_accion', 'desc')
-        ->limit(10)
-        ->get();
+        $data = \DB::table('historial_incidentes as h')
+            ->join('tickets_incidentes as t', 'h.incidente_id', '=', 't.id')
+            ->join('users as u', 'h.usuario_id', '=', 'u.id')
+            ->select(
+                'h.id',
+                't.id as incidente_id',
+                't.titulo',
+                'h.comentario',
+                'h.fecha_accion',
+                'h.visto',
+                'u.nombres as usuario'
+            )
+            ->where(function($q) use ($userId){
+                $q->where('t.usuario_reporta_id', $userId)
+                ->orWhere('t.tecnico_asignado_id', $userId);
+            })
+            ->where('h.accion', 'Actualización')
+            ->orderBy('h.fecha_accion', 'desc')
+            ->limit(10)
+            ->get();
 
-    $noLeidas = $data->where('visto', 0)->count();
+        $noLeidas = $data->where('visto', 0)->count();
 
-    return response()->json([
-        'notificaciones' => $data,
-        'no_leidas' => $noLeidas
-    ]);
-}
+        return response()->json([
+            'notificaciones' => $data,
+            'no_leidas' => $noLeidas
+        ]);
+    }
 
     public function marcarLeidas()
     {

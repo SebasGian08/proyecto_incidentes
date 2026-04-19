@@ -49,6 +49,23 @@ $(document).ready(function () {
                 });
             }
         },
+        {
+            data: 'fecha_cierre',
+            title: 'Fecha cierre',
+            render: function (data) {
+                if (!data) return '';
+
+                let fecha = new Date(data);
+
+                return fecha.toLocaleString('es-PE', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        },
 
         {
             data: null,
