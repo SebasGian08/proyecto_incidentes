@@ -6,8 +6,11 @@ $(document).ready(function () {
     tabla = $('#tablaGestion').DataTable({
         ajax: URL_INCIDENTES_MIS,
         columns: [{
-            data: 'id',
-            title: 'ID'
+            data: null,
+            title: '#',
+            render: function (data, type, row, meta) {
+                return meta.row + 1;
+            }
         },
         {
             data: 'titulo',

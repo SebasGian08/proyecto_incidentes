@@ -41,7 +41,13 @@ function listarActivos() {
             dataSrc: 'data'
         },
         columns: [
-            { data: 'id', title: '#' },
+            {
+                data: null,
+                title: '#',
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                }
+            },
             { data: 'codigo_patrimonial', title: 'Código' },
             { data: 'nombre', title: 'Nombre' },
             { data: 'numero_serie', title: 'Serie' },

@@ -13,8 +13,11 @@ $(function () {
             }
         },
         columns: [{
-            data: 'id',
-            title: 'ID'
+            data: null,
+            title: '#',
+            render: function (data, type, row, meta) {
+                return meta.row + 1;
+            }
         },
         {
             data: 'titulo',

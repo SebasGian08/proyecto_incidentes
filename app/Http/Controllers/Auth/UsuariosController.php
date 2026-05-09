@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Importa la clase Auth
 use BolsaTrabajo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class UsuariosController extends Controller
 
@@ -41,9 +42,9 @@ class UsuariosController extends Controller
                 'email' => $user->email,
                 'estado' => $user->estado,
                 'profile' => $user->profile, // Asegúrate de incluir cualquier otro campo necesario
-                'inicio_sesion' => $user->inicio_sesion,
-                'online' => $user->online,
-                'cerrar_sesion' => $user->cerrar_sesion
+                'inicio_sesion' => $user->inicio_sesion ? Carbon::parse($user->inicio_sesion)->format('H:i:s') : null,
+                'cerrar_sesion' => $user->cerrar_sesion ? Carbon::parse($user->cerrar_sesion)->format('H:i:s') : null,
+                'online' => $user->online
             ];
         });
 

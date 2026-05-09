@@ -188,7 +188,7 @@
                     <label>Técnico</label>
                     <select id="g_tecnico" class="form-control">
                         <option value="">Sin asignar</option>
-                        @foreach(\DB::table('users')->get() as $u)
+                        @foreach(\DB::table('users')->where('profile_id', 3)->get() as $u)
                         <option value="{{ $u->id }}">{{ $u->nombres }}</option>
                         @endforeach
                     </select>
@@ -224,9 +224,9 @@
 
 @section('scripts')
 <script>
-    const API = {
-        historial: "{{ route('incidentes.historial', ':id') }}"
-    };
+const API = {
+    historial: "{{ route('incidentes.historial', ':id') }}"
+};
 </script>
 <script src="{{ asset('auth/plugins/datatable/datatables.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

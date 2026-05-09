@@ -62,14 +62,33 @@ $(function () {
             {
                 title: "Último inicio de sesión",
                 data: "inicio_sesion",
-                className: "text-center"
+                className: "text-center",
+                render: function (data) {
+                    if (!data) return "-";
+
+                    const date = new Date(data);
+                    return date.toLocaleTimeString("es-PE", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    });
+                }
             },
             {
                 title: "Último cierre de sesión",
                 data: "cerrar_sesion",
-                className: "text-center"
-            },
+                className: "text-center",
+                render: function (data) {
+                    if (!data) return "-";
 
+                    const date = new Date(data);
+                    return date.toLocaleTimeString("es-PE", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    });
+                }
+            },
             {
                 data: null,
                 defaultContent:

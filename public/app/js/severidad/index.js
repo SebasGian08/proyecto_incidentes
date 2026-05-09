@@ -25,7 +25,13 @@ function listarSeveridad() {
             dataSrc: 'data'
         },
         columns: [
-            { data: 'id', title: '#' },
+            {
+                data: null,
+                title: '#',
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                }
+            },
             { data: 'nombre', title: 'Nombre' },
             { data: 'sla_minutos', title: 'SLA (min)' },
             {
