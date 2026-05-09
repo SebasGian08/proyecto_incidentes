@@ -8,14 +8,14 @@
 
 
 
-    <meta name="title" content="Nombre de empresa"/>
+    <meta name="title" content="Alfrimac - Operador Logístico en Frío"/>
     <meta name="description" content=""/>
     <meta name="keywords" content="">
     <meta property="og:title" content="">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta property="og:url" content="">
-    <meta property="og:site_name" content="Nombre de empresa">
+    <meta property="og:site_name" content="Alfrimac - Operador Logístico en Frío">
     <meta property="og:type" content="website">
     <meta name="author" content="MAJML" />
     <meta name="Resource-type" content="Document" />
@@ -26,7 +26,7 @@
 
     <link rel="shortcut icon" href="{{ asset('app/img/logo2.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=5; IE=6; IE=7; IE=8; IE=9; IE=10">
-    <title>Nombre de empresa</title>
+    <title>Alfrimac - Operador Logístico en Frío</title>
     <link rel="stylesheet" href="{{ asset('app/plugins/bootstrap4/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('app/plugins/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('app/plugins/transitions.css') }}">
