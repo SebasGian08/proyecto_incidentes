@@ -42,8 +42,8 @@ class UsuariosController extends Controller
                 'email' => $user->email,
                 'estado' => $user->estado,
                 'profile' => $user->profile, // Asegúrate de incluir cualquier otro campo necesario
-                'inicio_sesion' => $user->inicio_sesion ? Carbon::parse($user->inicio_sesion)->format('H:i:s') : null,
-                'cerrar_sesion' => $user->cerrar_sesion ? Carbon::parse($user->cerrar_sesion)->format('H:i:s') : null,
+                'inicio_sesion' => $user->inicio_sesion,
+                'cerrar_sesion' => $user->cerrar_sesion,
                 'online' => $user->online
             ];
         });
