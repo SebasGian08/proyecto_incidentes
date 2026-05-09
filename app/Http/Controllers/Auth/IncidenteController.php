@@ -317,7 +317,7 @@ class IncidenteController extends Controller
 
             $file->move(public_path($filePath), $fileName);
 
-            $incidente->evidencia = $filePath . $fileName;
+            $incidente->evidencia_soporte = $filePath . $fileName;
         }
 
         // AGREGAR COMENTARIO
