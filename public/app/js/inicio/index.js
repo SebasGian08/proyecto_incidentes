@@ -143,11 +143,43 @@ $(document).on('click', '.btn-detalle', function () {
             let html = '';
 
             data.forEach(item => {
+                let evidenciaHtml = '';
+
+                if (item.evidencia_soporte) {
+
+                    let ext = item.evidencia_soporte.split('.').pop().toLowerCase();
+
+                    if (['jpg', 'jpeg', 'png'].includes(ext)) {
+
+                        evidenciaHtml = `
+                    <div style="margin-top:10px;">
+                        <img src="/${item.evidencia_soporte}" 
+                            style="max-width:250px;border-radius:8px;border:1px solid #ddd;">
+                    </div>
+                `;
+
+                    } else {
+
+                        evidenciaHtml = `
+                    <div style="margin-top:10px;">
+                        <a href="/${item.evidencia_soporte}" 
+                        target="_blank"
+                        class="btn btn-sm btn-outline-primary">
+                            Ver evidencia soporte
+                        </a>
+                    </div>
+                `;
+                    }
+                }
+
                 html += `
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <strong>${item.accion}</strong>
                         <p>${item.comentario}</p>
+
+                        ${evidenciaHtml}
+
                         <small>${item.usuario} - ${item.fecha_accion}</small>
                     </div>
                 </div>
@@ -211,7 +243,7 @@ $(window).click(function (e) {
 let incidenteId = null;
 
 // Abrir modal de calificación
-$(document).on('click', '.btn-calificar', function() {
+$(document).on('click', '.btn-calificar', function () {
     incidenteId = $(this).data('id');
     $('#modalCalificar').fadeIn();
     $('#ratingInput').val(2.5);              // valor por defecto
@@ -220,21 +252,21 @@ $(document).on('click', '.btn-calificar', function() {
 });
 
 // Mostrar valor al mover la barra
-$('#ratingInput').on('input', function() {
+$('#ratingInput').on('input', function () {
     $('#ratingValue').text($(this).val());
 });
 
 // Cerrar modal
-$('.close-modal').click(function() {
+$('.close-modal').click(function () {
     $(this).closest('.modal-custom').fadeOut();
 });
 
 // Enviar calificación usando fetch()
-$('#btnEnviarCalificacion').click(function() {
+$('#btnEnviarCalificacion').click(function () {
     const rating = $('#ratingInput').val();
     const comentario = $('#comentarioCalificacion').val();
 
-    if(!rating) {
+    if (!rating) {
         Swal.fire({
             icon: 'warning',
             title: 'Oops...',
@@ -255,32 +287,32 @@ $('#btnEnviarCalificacion').click(function() {
             comentario: comentario
         })
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.Success) {
-            $('#modalCalificar').fadeOut();
-            Swal.fire({
-                icon: 'success',
-                title: '¡Calificación enviada!',
-                text: data.Message
-            });
-            incidenteId = null;
-            tabla.ajax.reload(); // recargar tabla si usas DataTables
-        } else {
-            let errores = Object.values(data.Errors).flat().join("\n");
+        .then(res => res.json())
+        .then(data => {
+            if (data.Success) {
+                $('#modalCalificar').fadeOut();
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Calificación enviada!',
+                    text: data.Message
+                });
+                incidenteId = null;
+                tabla.ajax.reload(); // recargar tabla si usas DataTables
+            } else {
+                let errores = Object.values(data.Errors).flat().join("\n");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errores || 'No se pudo enviar la calificación'
+                });
+            }
+        })
+        .catch(err => {
+            console.error(err);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: errores || 'No se pudo enviar la calificación'
+                text: 'Ocurrió un error inesperado'
             });
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Ocurrió un error inesperado'
         });
-    });
 });

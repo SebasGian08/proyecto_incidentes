@@ -140,6 +140,7 @@ class IncidenteController extends Controller
                 'h.accion',
                 'h.comentario',
                 'h.fecha_accion',
+                'h.evidencia_soporte',
                 'u.nombres as usuario'
             )
             ->where('h.incidente_id', $id)
@@ -304,11 +305,9 @@ class IncidenteController extends Controller
             }
         }
 
-        // GUARDAR EVIDENCIA
         if ($request->hasFile('evidencia')) {
-
             $file = $request->file('evidencia');
-            $fileName = uniqid('SOL_') . '.' . $file->getClientOriginalExtension();
+            $fileName = uniqid('SOP_') . '.' . $file->getClientOriginalExtension();
             $filePath = 'uploads/incidentes/';
 
             if (!file_exists(public_path($filePath))) {
@@ -317,7 +316,20 @@ class IncidenteController extends Controller
 
             $file->move(public_path($filePath), $fileName);
 
-            $incidente->evidencia_soporte = $filePath . $fileName;
+            $ruta = $filePath . $fileName;
+
+            $incidente->evidencia_soporte = $ruta;
+
+            \DB::table('historial_incidentes')->insert([
+                'incidente_id' => $incidente->id,
+                'usuario_id' => Auth::id(),
+                'accion' => 'Evidencia de soporte',
+                'comentario' => 'Se adjuntó evidencia',
+                'evidencia_soporte' => $ruta,
+                'fecha_accion' => now(),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
         }
 
         // AGREGAR COMENTARIO
