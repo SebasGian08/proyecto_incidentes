@@ -15,12 +15,7 @@ class UsuariosController extends Controller
 {
     public function index()
     {
-        if (Auth::guard('web')->user()->profile_id == \BolsaTrabajo\App::$PERFIL_DESARROLLADOR) {
-            return view('auth.usuarios.index');
-        }
-
-        // Opcionalmente, podrías manejar el caso en que la condición no se cumple
-        return redirect('/auth/inicio'); // Redirige a una página predeterminada si la condición no se cumple
+        return view('auth.usuarios.index');
     }
     
     public function list_all()  
