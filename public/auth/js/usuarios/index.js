@@ -66,10 +66,31 @@ $(function () {
                 render: function (data) {
                     if (!data) return "-";
 
-                    const date = new Date(data);
-                    return date.toLocaleTimeString("es-PE", {
+                    let valor = data;
+
+                    // Si el año viene con 2 dígitos (26-05-30), convertir a 2026-05-30
+                    if (/^\d{2}-\d{2}-\d{2}/.test(valor)) {
+                        valor = "20" + valor;
+                    }
+
+                    const partes = valor.split(/[- :]/);
+
+                    const fecha = new Date(
+                        parseInt(partes[0]),      // Año
+                        parseInt(partes[1]) - 1,  // Mes
+                        parseInt(partes[2]),      // Día
+                        parseInt(partes[3]),      // Hora
+                        parseInt(partes[4]),      // Minuto
+                        parseInt(partes[5])       // Segundo
+                    );
+
+                    return fecha.toLocaleString("es-PE", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
+                        second: "2-digit",
                         hour12: false
                     });
                 }
@@ -81,10 +102,31 @@ $(function () {
                 render: function (data) {
                     if (!data) return "-";
 
-                    const date = new Date(data);
-                    return date.toLocaleTimeString("es-PE", {
+                    let valor = data;
+
+                    // Si el año viene con 2 dígitos (26-05-30), convertir a 2026-05-30
+                    if (/^\d{2}-\d{2}-\d{2}/.test(valor)) {
+                        valor = "20" + valor;
+                    }
+
+                    const partes = valor.split(/[- :]/);
+
+                    const fecha = new Date(
+                        parseInt(partes[0]),
+                        parseInt(partes[1]) - 1,
+                        parseInt(partes[2]),
+                        parseInt(partes[3]),
+                        parseInt(partes[4]),
+                        parseInt(partes[5])
+                    );
+
+                    return fecha.toLocaleString("es-PE", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
+                        second: "2-digit",
                         hour12: false
                     });
                 }
